@@ -1,0 +1,26 @@
+# YAML 1.2
+---
+abstract: |
+    "Material de apoio da disciplina de \"Laboratório de Programação Modular\", do curso de Engenharia de Software da PUC Minas.
+    
+    Ementa:
+    Teste unitário. Projeto e desenvolvimento de software orientado para objetos.
+    Implementação de sistemas utilizando padrões de projeto. Uso de recursos funcionais
+    no desenvolvimento de sistemas.
+    "
+authors: 
+  -
+    affiliation: "PUC Minas"
+    family-names: "de Paula"
+    given-names: Hugo
+cff-version: "1.1.0"
+keywords: 
+  - "Programação Modular"
+  - "Programação Orientada para Objetos"
+  - Java
+message: |
+    "If you use this software, please cite it using these metadata.
+    Se você utilizar este software, por favor cite-o utilizando estes metadados."
+repository-code: "https://github.com/hugodepaula/programacao-modular"
+title: "Laboratório de Programação Modular"
+...
