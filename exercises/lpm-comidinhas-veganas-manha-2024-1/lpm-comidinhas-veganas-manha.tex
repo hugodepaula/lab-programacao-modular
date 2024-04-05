@@ -1,0 +1,217 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cronograma de aula
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,brazil, a4paper, fullpage]{article}
+
+
+\newcommand\UNIVERSIDADE{PONTIFÍCIA  UNIVERSIDADE  CATÓLICA  DE  MINAS  GERAIS}
+\newcommand\UNIDADE{Praça da Liberdade}
+\newcommand\INSTITUTO{Inst. de Ciências Exatas e Informática}
+\newcommand\CURSO{Ciência da Computação}
+\newcommand\PROFESSOR{Hugo de Paula}
+\newcommand\EMAILPROFESSOR{hugo@pucminas.br}
+\newcommand\DEPARTAMENTO{Departamento de Ciência da Computação}
+
+\newcommand\DISCIPLINA{Laboratório de Programação Modular}
+\newcommand\ANO{2024}
+\newcommand\SEMESTRE{1}
+\newcommand\TURNO{manhã}
+\newcommand\PERIODO{3}
+
+\def\year{\ANO}
+
+\input{infos/some-definitions}
+\input{infos/calpreambulo}
+
+\newcommand{\DIAUM}{\Sexta}
+\newcommand{\DIADOIS}{\Sexta}
+
+
+\begin{document}
+
+	\selectlanguage{brazil}
+
+	\logoPUC{infos/puclogo_small_bw}
+	\dadosDisciplina{\DISCIPLINA}{\CURSO}{\TURNO}{\ANO}{\SEMESTRE}{\PROFESSOR}{\EMAILPROFESSOR}
+
+	%\dadosAvancadosDisciplina{04}{00}{04}{80}{04}{infos/objetivos.tex}{infos/ementa.tex}{3 $\times$ 25}{25}{infos/avaliacao.tex}{infos/biblio.tex}
+
+	\calVisualColorido{1}{\DIAUM}{\DIADOIS}{\ANO}{07-07} % semestre, dias de aula (DOIS vezes por semana)
+	%\calVisualColorido{2}{\DIAUM}{\DIADOIS}{\ANO}{12-21} % semestre, dias de aula (DOIS vezes por semana)
+
+\section{Especificação}
+
+\subsection{Sprint 1}
+
+\begin{center}
+    \setlength{\fboxsep}{10pt}
+    \fbox{%
+        \parbox{.7\textwidth}{\textbf{Objetivos}: \\[1mm]
+            modelo UML (agregação), classes de negócio e testes unitários, versão 1 do sistema.}%
+    }
+\end{center}
+
+
+Um restaurante atende seus clientes alocando-os em mesas por meio de 'requisições por mesas'.
+
+No momento, o restaurante possui 10 mesas: 4 com capacidade para 4 pessoas, 4 com capacidade para 6 pessoas e 2 com capacidade para 8 pessoas. O restaurante deve ser capaz de ampliar a sua capacidade com o menor esforço possível.
+
+O cliente, ao chegar, deve declarar quantas pessoas comerão no restaurante, gerando assim uma requisição por mesa.
+
+Tão logo quanto possível deverá ser alocada uma mesa adequada para ele. Se não houver mesa livre, o cliente entra numa fila de espera. As requisições precisam registrar as datas e horas de entrada e saída do cliente.
+
+
+
+
+\subsection{Sprint 2}
+
+
+\begin{center}
+    \setlength{\fboxsep}{10pt}
+    \fbox{%
+        \parbox{.7\textwidth}{\textbf{Objetivos}: \\[1mm]
+            atualizar projeto UML, novas classes e testes, novas regras de negócio e persistência/spring.}%
+    }
+\end{center}
+
+
+O restaurante oferece aos clientes um cardápio simplificado com 6 pratos e 5 opções de bebidas como por exemplo: \\
+
+
+\begin{tabular}{ll}
+\begin{minipage}{.45\textwidth}
+\begin{itemize}
+    \item Moqueca de Palmito
+    \item Falafel Assado
+    \item Salada Primavera com Macarrão Konjac
+    \item Escondidinho de Inhame
+    \item Strogonoff de Cogumelos
+    \item Caçarola de carne com legumes
+\end{itemize}
+\end{minipage} &
+
+\begin{minipage}{.45\textwidth}
+\begin{itemize}
+    \item Água
+    \item Suco
+    \item Refrigerante
+    \item Cerveja
+    \item Taça de vinho
+\end{itemize}
+\end{minipage} \\
+\end{tabular} \\
+
+
+
+Cada mesa, enquanto está sendo servida, pode fazer um pedido com quantos pratos e bebidas desejar. Novos produtos podem ser adicionados ao pedido no decorrer do atendimento.
+
+Ao encerrar o pedido, a conta incluirá uma taxa de serviço de 10\% e exibirá tanto o valor total como o valor a ser dividido igualmente entre os ocupantes.
+
+
+\subsection{Sprint 3}
+
+
+
+\begin{center}
+    \setlength{\fboxsep}{10pt}
+    \fbox{%
+        \parbox{.7\textwidth}{\textbf{Objetivos}: \\[1mm]
+            atualizar projeto UML, novas classes e testes com herança e/ou composição com interface.}%
+    }
+\end{center}
+
+
+Cada conta pode ser paga por diferentes métodos: dinheiro, Pix, débito ou crédito. O que muda para cada método são o prazo para receber o valor e a taxa que o restaurante paga ao banco por este recebimento. Além disso, para pagamento em Pix, deve ser armazenado o nome do emitente do Pix. No caso de débito, deve ser armazenado o nome do banco de origem do débito. Finalmente, no caso de cartão de crédito, deve ser armazenado a bandeira do cartão (Visa, Mastercard, Elo, American Express).
+
+\begin{itemize}
+    \item \textbf{dinheiro}: prazo 0 dias, desconto 0\%
+    \item \textbf{pix}: prazo 0 dias, desconto de 1,45\%, limitado a R\$10
+    \item \textbf{débito}: prazo 14 dias, desconto de 1,4\%
+    \item \textbf{crédito}: prazo 30 dias, desconto de 3,1\%
+\end{itemize}
+
+O restaurante precisa saber quanto vendeu em um dia e quanto receberá em datas futuras a serem determinadas pela gerência.
+
+Pedidos para delivery não incluem taxa de serviço, mas incluem taxa de entrega de acordo com a distância: Estes pedidos não precisam especificar o valor individual a ser pago em uma conta.
+
+
+\subsection{Sprint 4}
+
+
+\begin{center}
+    \setlength{\fboxsep}{10pt}
+    \fbox{%
+        \parbox{.7\textwidth}{\textbf{Objetivos}: \\[1mm]
+            atualizar projeto UML, novos requisitos para incorporar tratamentos de erros, exceções e padrões de projeto.}%
+    }
+\end{center}
+
+Esse trabalho deve usar padrões de projeto, como por exemplo: \textbf{Singleton}, \textbf{Decorator}, \textbf{Factory} e \textbf{Observer}.
+
+
+\subsection{Critérios de correção}
+
+Será avaliado:
+\begin{itemize}
+    \item a conformidade com os requisitos
+    \item qualidade do código: correção e robustez
+    \item modularização: alta coesão e baixo acoplamento, extensibilidade e adequação aos princípios SOLID
+    \item utilização dos conceitos básicos e avançados de programação modular: tais como polimorfismo, collections, streams e tratamento de exceções.
+    \item testes unitários baseados na JUnit.
+\end{itemize}
+
+\newpage
+
+\section{Cronograma de realização de tarefas}
+
+\begin{center}
+
+\small
+%\footnotesize
+\begin{calendar}{3/15/\ANO}{15} % Semestre comeca no dia 1 de agosto, e dura por 21 semanas.
+\setlength{\calboxdepth}{.3in}
+\setlength{\calwidth}{0.95\textwidth}
+
+%
+%% configuracao da semana
+\semanaSex
+%
+%% lista de Aulas
+\caltexton{1}{Sprint 1 -- Diagrama de Classes na UML }
+\caltextnext{Sprint 1 -- Implementação classes de negócio e testes unitários, versão 1 do sistema. \\
+    \textbf{Apresentação da Sprint 1}}
+\caltextnext{Aula de SpringBoot \\
+Sprint 2 -- implementação dos novos requisitos.}
+\caltextnext{Aula de Herança e polimorfismo \\
+Sprint 2 -- implementação da persistência / spring.}
+\caltextnext{Aula de Interfaces \\
+    Sprint 2 -- implementação dos testes.}
+\caltextnext{\textbf{Apresentação da Sprint 2}}
+\caltextnext{Aula de Collections e Streams. \\
+    Sprint 3 -- implementação de polimorfismo e interfaces.}
+\caltextnext{Sprint 3 -- implementação de collections e streams.}
+\caltextnext{Aula de Padrões de Projeto}
+\caltextnext{\textbf{Apresentação da Sprint 3}}
+\caltextnext{Aula de Eventos e interface gráfica \\
+    Sprint 4 -- implementação dos padrões de projeto.}
+\caltextnext{Sprint 3 -- implementação dos tratamentos de erro.}
+%\caltextnext{Acompanhamento}
+\caltextnext{\textbf{Apresentação da Sprint 4}}
+\caltextnext{Reavaliação}
+%
+% feriados e avisos
+% Se n?o quiser que os avisos sejam colocados no cronograma, basta comentar o comando input.
+\input{infos/feriados}
+%%\input{infos/avisos}
+%
+
+%\aviso{9/19/2022}{AULA ADICIONAL SEGUNDA-FEIRA, DIA 19/09, 10h40}
+%\aviso{10/12/2022}{AULA ADICIONAL QUINTA-FEIRA, DIA 13/10, 8h50}
+%\aviso{10/31/2022}{AULA ADICIONAL SEGUNDA-FEIRA, DIA 19/09, 10h40}
+
+
+\end{calendar}
+\end{center}
+
+\end{document}
