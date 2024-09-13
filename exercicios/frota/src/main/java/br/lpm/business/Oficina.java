@@ -34,12 +34,16 @@ public class Oficina {
     }
 
     public Manutencao getLastManutencaoFromVeiculo(Veiculo veiculo) {
-        for (int i = numManutencoes - 1; i >= 0; i++) {
-            if (manutencoes[i].getVeiculo().equals(veiculo)) {
-                return manutencoes[i];
+        if (numManutencoes == 0) {
+            return null;
+        } else {
+            for (int i = numManutencoes - 1; i >= 0; i++) {
+                if (manutencoes[i].getVeiculo().equals(veiculo)) {
+                    return manutencoes[i];
+                }
             }
+            return null;
         }
-        return null;
     }
 
     public void addVeiculoToManutencao(Veiculo veiculo) {
