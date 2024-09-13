@@ -1,0 +1,65 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>230</x><y>20</y><w>150</w><h>100</h></coordinates><panel_attributes>Veiculo
+--
+-modelo: String
+-ano: int
+-placa: String
+-km: int
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>50</x><y>20</y><w>120</w><h>70</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Estado
+--
++TRANSITO
++MANUTENCAO
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>20</y><w>90</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1
+m2pos=-15,0
+</panel_attributes><additional_attributes>70;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>230</y><w>150</w><h>90</h></coordinates><panel_attributes>Motorista
+--
+-nome: String
+-id: int
+_-cont: int_
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>160</y><w>120</w><h>90</h></coordinates><panel_attributes>Rota
+--
+-origem: String
+-destino: String
+-data: LocalDate
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>110</y><w>110</w><h>140</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=*</panel_attributes><additional_attributes>90;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>160</y><w>90</w><h>40</h></coordinates><panel_attributes>lt=.
+</panel_attributes><additional_attributes>70;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>200</y><w>350</w><h>150</h></coordinates><panel_attributes>Oficina
+--
+-nome: String
+-endereco: String
+--
++getNumManutencoes(): int
++getAllManutencoes(): Manutencao[ ]
++getLastManutencaoFromVeiculo( : Veiculo): Manutencao
++addVeiculoToManutencao?( : Veiculo)
++removeVeiculoFromManutencao( : Veiculo)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>20</y><w>150</w><h>60</h></coordinates><panel_attributes>Manutencao
+--
+-previsao: LocalDate
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>70</y><w>40</w><h>150</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=*</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>20</y><w>230</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=*
+m2=1</panel_attributes><additional_attributes>210;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>70</x><y>350</y><w>390</w><h>140</h></coordinates><panel_attributes>Frota
+--
+
+--
++getAllVeiculos(): Veiculo[] 
++addVeiculo( : Veiculo) 
++getVeiculoByPlaca(placa: String): Veiculo
++removeVeiculoByPlaca(placa: String)
++replaceVeiculo(old: Veiculo, new: Veiculo)
++newRota(: Motorista, : Veiculo, origem: String , destino: String )
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>240</y><w>40</w><h>130</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=*</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>100</y><w>170</w><h>270</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=*
+gerencia &gt;</panel_attributes><additional_attributes>10;250;10;10;150;10</additional_attributes></element></diagram>
