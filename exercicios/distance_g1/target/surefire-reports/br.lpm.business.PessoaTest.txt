@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: br.lpm.business.PessoaTest
+-------------------------------------------------------------------------------
+Tests run: 12, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.114 s <<< FAILURE! -- in br.lpm.business.PessoaTest
+br.lpm.business.PessoaTest.testSetNome -- Time elapsed: 0.016 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Atribuição de nome inválido. ==> expected: <Hugo> but was: <Hugo123>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at br.lpm.business.PessoaTest.testSetNome(PessoaTest.java:29)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
