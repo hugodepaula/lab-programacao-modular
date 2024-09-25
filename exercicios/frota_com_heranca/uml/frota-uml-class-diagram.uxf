@@ -1,0 +1,79 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>230</x><y>0</y><w>150</w><h>100</h></coordinates><panel_attributes>Veiculo
+--
+-modelo: String
+-ano: int
+-placa: String
+-km: int
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>50</x><y>0</y><w>120</w><h>70</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Estado
+--
++TRANSITO
++MANUTENCAO
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>0</y><w>90</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1
+m2pos=-15,0
+</panel_attributes><additional_attributes>70;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>160</y><w>150</w><h>90</h></coordinates><panel_attributes>Profissional
+--
+-nome: String
+-id: int
+_-cont: int_
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>140</x><y>250</y><w>120</w><h>90</h></coordinates><panel_attributes>Rota
+--
+-origem: String
+-destino: String
+-data: LocalDate
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>90</y><w>50</w><h>240</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=0..*</panel_attributes><additional_attributes>10;220;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>190</y><w>80</w><h>100</h></coordinates><panel_attributes>lt=.
+</panel_attributes><additional_attributes>60;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>590</x><y>130</y><w>350</w><h>150</h></coordinates><panel_attributes>Oficina
+--
+-nome: String
+-endereco: String
+--
++getNumManutencoes(): int
++getAllManutencoes(): Manutencao[ ]
++getLastManutencaoFromVeiculo( : Veiculo): Manutencao
++addVeiculoToManutencao?( : Veiculo)
++removeVeiculoFromManutencao( : Veiculo)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>0</y><w>150</w><h>60</h></coordinates><panel_attributes>Manutencao
+--
+-previsao: LocalDate
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>730</x><y>50</y><w>50</w><h>100</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>0</y><w>320</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=1</panel_attributes><additional_attributes>300;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>70</x><y>450</y><w>390</w><h>140</h></coordinates><panel_attributes>Frota
+--
+
+--
++getAllVeiculos(): Veiculo[] 
++addVeiculo( : Veiculo) 
++getVeiculoByPlaca(placa: String): Veiculo
++removeVeiculoByPlaca(placa: String)
++replaceVeiculo(old: Veiculo, new: Veiculo)
++newRota(: Motorista, : Veiculo, origem: String , destino: String )
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>330</y><w>40</w><h>140</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=*</panel_attributes><additional_attributes>10;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>80</y><w>170</w><h>390</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*
+gerencia &gt;</panel_attributes><additional_attributes>10;370;10;10;150;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>310</y><w>150</w><h>60</h></coordinates><panel_attributes>Motorista
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>310</y><w>150</w><h>60</h></coordinates><panel_attributes>Mecanico
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>240</y><w>100</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;80;70</additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>240</y><w>90</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>620</x><y>270</y><w>180</w><h>100</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*</panel_attributes><additional_attributes>150;10;150;70;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>360</y><w>50</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>360</y><w>140</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes><additional_attributes>10;150;100;150;100;10</additional_attributes></element></diagram>

@@ -1,0 +1,5 @@
+# Created at 2024-09-13T12:26:32.377
+Boot Manifest-JAR contains absolute paths in classpath 'd:\OneDrive - sga.pucminas.br\git-code\disciplinas\lab-programacao-modular\exercicios\frota_com_heranca\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
