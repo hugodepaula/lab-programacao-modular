@@ -12,4 +12,21 @@ public enum Escolaridade {
     private Escolaridade(int value) {
         this.value = value;
     }
+
+    public static Escolaridade parseEscolaridade(String escolaridade) {
+        if (escolaridade.equalsIgnoreCase("Nenhuma")) {
+            return Escolaridade.NENHUMA;
+        } else if (escolaridade.equalsIgnoreCase("Ensino Fundamental")) {
+            return Escolaridade.FUNDAMENTAL;
+        } else if (escolaridade.equalsIgnoreCase("Ensino Médio")) {
+            return Escolaridade.MEDIO;
+        } else if (escolaridade.equalsIgnoreCase("Ensino Superior")) {
+            return Escolaridade.SUPERIOR;
+        } else if (escolaridade.equalsIgnoreCase("Pós-graduação, Mestrado ou Doutorado")) {
+            return Escolaridade.POS_GRADUACAO;
+        } else {
+            return null;
+        }
+    }
+
 }

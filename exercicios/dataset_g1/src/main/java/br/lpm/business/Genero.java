@@ -12,4 +12,18 @@ public enum Genero {
     private Genero(int value) {
         this.value = value;
     }
+
+    public static Genero parseGenero(String genero) {
+        if (genero.equalsIgnoreCase("Feminino")) {
+            return Genero.FEMININO;
+        } else if (genero.equalsIgnoreCase("Masculilno")) {
+            return Genero.MASCULINO;
+        } else if (genero.equalsIgnoreCase("Não binário")) {
+            return Genero.NAO_BINARIO;
+        } else if (genero.equalsIgnoreCase("Não responder")) {
+            return Genero.NAO_RESPONDER;
+        } else {
+            return null;
+        }
+    }
 }

@@ -12,4 +12,16 @@ public enum Moradia {
     private Moradia(int value) {
         this.value = value;
     }
+
+    public static Moradia parseMoradia(String moradia) {
+        if (moradia.equalsIgnoreCase("Com a família")) {
+            return Moradia.COM_FAMILIA;
+        } else if (moradia.equalsIgnoreCase("Aluguel")) {
+            return Moradia.ALUGUEL;
+        } else if (moradia.equalsIgnoreCase("Casa Própria")) {
+            return Moradia.CASA_PROPRIA;
+        } else {
+            return null;
+        }
+    }
 }

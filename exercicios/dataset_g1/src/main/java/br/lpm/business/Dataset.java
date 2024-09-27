@@ -1,6 +1,16 @@
 package br.lpm.business;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Locale;
+
 
 public class Dataset {
     private static final int NOT_FOUND = -1;
@@ -8,9 +18,9 @@ public class Dataset {
     private Pessoa[] pessoas = new Pessoa[MAX_PESSOAS];
     private int numPessoas = 0;
 
-    private int searchPessoaByName(Pessoa pessoa) {
+    private int searchPessoaByName(String nome) {
         for (int pos = 0; pos < numPessoas; pos++) {
-            if (pessoas[pos].getNome().equalsIgnoreCase(pessoa.getNome())) {
+            if (pessoas[pos].getNome().equalsIgnoreCase(nome)) {
                 return pos;
             }
         }
@@ -26,8 +36,8 @@ public class Dataset {
     public void removePessoa(Pessoa pessoa) {
         for (int pos = 0; pos < numPessoas; pos++) {
             if (pessoas[pos].equals(pessoa)) {
-                for (int i = pos+1; i < numPessoas; i++) {
-                    pessoas[i-1] = pessoas[i];
+                for (int i = pos + 1; i < numPessoas; i++) {
+                    pessoas[i - 1] = pessoas[i];
                 }
                 pessoas[--numPessoas] = null;
             }
@@ -37,22 +47,22 @@ public class Dataset {
     public void removePessoaByName(String pessoa) {
         int pos = searchPessoaByName(pessoa);
         if (pos != NOT_FOUND) {
-            for (int i = pos+1; i < numPessoas; i++) {
-                pessoas[i-1] = pessoas[i];
+            for (int i = pos + 1; i < numPessoas; i++) {
+                pessoas[i - 1] = pessoas[i];
             }
             pessoas[--numPessoas] = null;
         }
     }
 
     public void replacePessoa(Pessoa oldPessoa, Pessoa newPessoa) {
-        int pos = searchPessoaByName(oldPessoa);
+        int pos = searchPessoaByName(oldPessoa.getNome());
         if (pos != NOT_FOUND) {
             pessoas[pos] = newPessoa;
-        } 
+        }
     }
 
     public Pessoa getPessoaByName(String nome) {
-        int pos = searchPessoaByName(pessoa);
+        int pos = searchPessoaByName(nome);
         if (pos != NOT_FOUND) {
             return pessoas[pos];
         } else {
@@ -60,7 +70,7 @@ public class Dataset {
         }
     }
 
-    public Pessoa[] getAll(){
+    public Pessoa[] getAll() {
         return pessoas;
     }
 
@@ -94,13 +104,13 @@ public class Dataset {
         }
         return min;
     }
-    
+
     public float avgAltura() {
         float sum = 0;
         for (int i = 0; i < numPessoas; i++) {
             sum += pessoas[i].getAltura();
         }
-        return sum/numPessoas;
+        return sum / numPessoas;
     }
 
     public float maxPeso() {
@@ -122,15 +132,15 @@ public class Dataset {
         }
         return min;
     }
-    
+
     public float avgPeso() {
         float sum = 0;
         for (int i = 0; i < numPessoas; i++) {
             sum += pessoas[i].getPeso();
         }
-        return sum/numPessoas;
+        return sum / numPessoas;
     }
-   
+
     public float percentAdult() {
         int count = 0;
         LocalDate today = LocalDate.now();
@@ -142,7 +152,34 @@ public class Dataset {
         return ((float) count) / numPessoas;
     }
 
-    public float percentEstadoCivil(EstadoCivil estadoCivil) {
+    public float percentGenero(Genero genero) {
+        int count = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            if (pessoas[i].getGenero().equals(genero)) {
+                count++;
+            }
+        }
+        return ((float) count) / numPessoas;
+    }
+
+    public Genero modeGenero() {
+        Genero[] values = Genero.values();
+        int[] count = new int[values.length];
+        int currentMax = -1;
+        Genero currentValue = null;
+
+        for (int i = 0; i < numPessoas; i++) {
+            int val = pessoas[i].getGenero().getValue();
+            count[val]++;
+            if (count[val] > currentMax) {
+                currentMax = count[val];
+                currentValue = pessoas[i].getGenero();
+            }
+        }
+        return currentValue;
+    }
+
+   public float percentEstadoCivil(EstadoCivil estadoCivil) {
         int count = 0;
         for (int i = 0; i < numPessoas; i++) {
             if (pessoas[i].getEstadoCivil().equals(estadoCivil)) {
@@ -168,7 +205,6 @@ public class Dataset {
         }
         return currentValue;
     }
-
 
     public float percentEscolaridade(Escolaridade escolaridade) {
         int count = 0;
@@ -259,6 +295,50 @@ public class Dataset {
             }
         }
         return ((float) count) / numPessoas;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.stream(pessoas).map(Pessoa::getNome).reduce("", (a, b) -> a + b + "\n");
+    }
+
+    public void loadDataFromCSV(String filename) throws Exception {
+
+        try (BufferedReader file = new BufferedReader(new FileReader(filename))) {
+
+            // Remove linha de título
+            String line = file.readLine();
+
+            line = file.readLine();
+            
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setDecimalSeparator(',');
+            DecimalFormat format = new DecimalFormat("0.#");
+            format.setDecimalFormatSymbols(symbols);
+
+            while (line != null && this.numPessoas < Dataset.MAX_PESSOAS) {
+                String[] fields = line.split(";");
+                String nome = fields[0];
+                LocalDate dataNascimento = LocalDate.parse(fields[1], DateTimeFormatter.ofPattern("M/d/yyyy"));
+                Genero genero = Genero.parseGenero(fields[2]);
+                float altura =   format.parse(fields[3]).floatValue();
+                int peso = format.parse(fields[4]).intValue();
+                float renda = format.parse(fields[5]).floatValue();
+                String naturalidade = fields[6];
+                Moradia moradia = Moradia.parseMoradia(fields[7]);
+                EstadoCivil estadoCivil = EstadoCivil.parseEstadoCivil(fields[8]);
+                Escolaridade escolaridade = Escolaridade.parseEscolaridade(fields[9]);
+                Hobby hobby = Hobby.parseHobby(fields[10]);
+                boolean feliz = fields[11].equalsIgnoreCase("Sim");
+
+                pessoas[numPessoas++] = new Pessoa(nome, dataNascimento, genero, altura, peso, renda,
+                naturalidade, hobby, estadoCivil, escolaridade, feliz, moradia) ;
+                line = file.readLine();
+            }
+        } catch (IOException e) {
+
+        }
+
     }
 
 }

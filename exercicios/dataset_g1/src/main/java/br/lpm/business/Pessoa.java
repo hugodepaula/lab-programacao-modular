@@ -29,7 +29,9 @@ public class Pessoa {
     }
 
     public void setAltura(float altura) {
-        this.altura = altura;
+        if (altura > 0 && altura <= 2.6f) {
+            this.altura = altura;
+        } 
     }
 
     public int getPeso() {
@@ -37,7 +39,9 @@ public class Pessoa {
     }
 
     public void setPeso(int peso) {
-        this.peso = peso;
+        if (peso > 0 && peso < 600) {
+            this.peso = peso;
+        } 
     }
 
     public float getRenda() {
@@ -45,7 +49,9 @@ public class Pessoa {
     }
 
     public void setRenda(float renda) {
-        this.renda = renda;
+        if (renda >= 0) {
+            this.renda = renda;
+        }
     }
 
     public String getNaturalidade() {
@@ -101,7 +107,11 @@ public class Pessoa {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome == null) {
+            this.nome = "No Name " + this.hashCode();
+        } else if (nome.matches("[a-zA-Z]+")) {
+            this.nome = nome;
+        } 
     }
 
     public Genero getGenero() {
@@ -110,6 +120,43 @@ public class Pessoa {
 
     public void setGenero(Genero genero) {
         this.genero = genero;
+    }
+
+    public Pessoa(String nome, LocalDate dataNascimento, Genero genero, float altura, int peso, float renda,
+            String naturalidade, Hobby hobby, EstadoCivil estadoCivil, Escolaridade escolaridade, boolean feliz,
+            Moradia moradia) {
+                this.setNome(nome);
+                this.dataNascimento = dataNascimento;
+        this.genero = genero;
+        this.altura = altura;
+        this.peso = peso;
+        this.renda = renda;
+        this.naturalidade = naturalidade;
+        this.hobby = hobby;
+        this.estadoCivil = estadoCivil;
+        this.escolaridade = escolaridade;
+        this.feliz = feliz;
+        this.moradia = moradia;
+    }
+
+    public Pessoa(String nome) {
+        this.setNome(nome);
+    }
+
+    @Override
+    public String toString() {
+        return String.join(", ", 
+            nome, 
+            genero.toString(), 
+            "Altura: " + Float.toString(altura), 
+            "Peso: " + Integer.toString(peso), 
+            "Renda: " + Float.toString(renda), 
+            "Naturalidade: " + naturalidade,
+            "Hobby: " + hobby.toString(),
+            "Estado Civil: " + estadoCivil.toString(),
+            "Escolaridade: " + escolaridade.toString(),
+            ((feliz) ? "Feliz" : "Infeliz"),
+            "Moradia: " + moradia.toString());
     }
 
 }
