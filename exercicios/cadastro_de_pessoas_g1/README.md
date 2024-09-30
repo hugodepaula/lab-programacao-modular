@@ -1,6 +1,6 @@
 # Cadastro de Pessoas
 
-#### Requisitos
+## Requisitos
 
 Realize um cadastro de pessoas com os seguintes requisitos.
 
@@ -19,7 +19,7 @@ A classe **Pessoa** deve ter os seguintes atributos:
 *   **feliz:** boolean.
 *   **moradia**: enum Moradia = {COM\_FAMILIA, ALUGUEL, CASA\_PROPRIA}.
 
-#### Implementação
+## Implementação
 
 Deverá ser implementado:
 
@@ -32,7 +32,7 @@ Deverá ser implementado:
 7.  A classe **Main** deve estar em um pacote chamado **main**.
 8.  A classe **PessoaTest** deve estar em um pacote chamado **test**.
 
-#### Entrega
+## Entrega
 
 O trabalho deve ser entregue no Github Classroom.
 
