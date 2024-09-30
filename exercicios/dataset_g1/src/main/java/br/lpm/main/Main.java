@@ -3,6 +3,8 @@ package br.lpm.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.jfree.chart.ui.UIUtils;
 
 import br.lpm.business.Dataset;
@@ -24,14 +26,14 @@ public class Main {
 
     }
 
-    public static void  histogramFormacaoAcadêmica() {
+    public static void  histogramEscolaridade() {
         List<String> names = new ArrayList<String>();
         List<Float> values = new ArrayList<Float>();
         for (Escolaridade e: Escolaridade.values()) {
             names.add(e.toString());
             values.add(dataset.percentEscolaridade(e)*dataset.size());
         }
-       new BarChart("Histograma de formação acadêmica", names, values, "Escolaridade");
+       new BarChart("Histograma de Escolaridade", names, values, "Escolaridade");
     }
 
     public static void pieGenero() {
@@ -60,8 +62,20 @@ public class Main {
         dataset.loadDataFromCSV("D:\\OneDrive - sga.pucminas.br\\git-code\\disciplinas\\lab-programacao-modular\\exercicios\\dataset_g1\\LPM - Turma 1 - Cadastro de Pessoas.csv");
         System.out.println(dataset.size());
 
+        JOptionPane.showMessageDialog(null, "\nAltura média: " + dataset.avgAltura() +
+        "\nAltura máxima: " + dataset.maxAltura() + 
+        "\nAltura mínima: " + dataset.minAltura() + 
+        "\nPeso médio: " + dataset.avgPeso() + 
+        "\nPeso máximo: " + dataset.maxPeso() + 
+        "\nPeso mínimo: " + dataset.minPeso() + 
+        "\nRenda média: " + dataset.avgRenda() + 
+        "\nRenda máxima: " + dataset.maxRenda() + 
+        "\nRenda mínima: " + dataset.minRenda() + 
+        "\nPorcentagem de adultos: " + Math.round(dataset.percentAdulto()*100) + 
+        "\nPorcentagem de pessoas felizes: " + Math.round(dataset.percentFeliz()*100), "Relatório de pessoas",JOptionPane.INFORMATION_MESSAGE);
+
         pieEscolaridade();
-        histogramFormacaoAcadêmica();
+        histogramEscolaridade();
         pieGenero();
         histogramGenero();
     }

@@ -16,12 +16,39 @@ public class Pessoa {
     private boolean feliz;
     private Moradia moradia;
 
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        if (nome == null) {
+            this.nome = "No Name " + this.hashCode();
+        } else if (nome.matches("[a-zA-Z áéíóúàâêãõçü]+")) {
+            this.nome = nome;
+        } 
+    }
+
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
     public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+        if (dataNascimento.isBefore(LocalDate.now())) {
+            this.dataNascimento = dataNascimento;
+        }
+    }
+
+    public boolean isAdulto() {
+        return (dataNascimento.until(LocalDate.now()).getYears() >= 18);
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
     }
 
     public float getAltura() {
@@ -59,7 +86,9 @@ public class Pessoa {
     }
 
     public void setNaturalidade(String naturalidade) {
-        this.naturalidade = naturalidade;
+        if (naturalidade.matches("[a-zA-Z áéíóúàâêãõçü]+")) {
+            this.naturalidade = naturalidade;
+        } 
     }
 
     public Hobby getHobby() {
@@ -102,46 +131,27 @@ public class Pessoa {
         this.moradia = moradia;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        if (nome == null) {
-            this.nome = "No Name " + this.hashCode();
-        } else if (nome.matches("[a-zA-Z]+")) {
-            this.nome = nome;
-        } 
-    }
-
-    public Genero getGenero() {
-        return genero;
-    }
-
-    public void setGenero(Genero genero) {
-        this.genero = genero;
-    }
-
     public Pessoa(String nome, LocalDate dataNascimento, Genero genero, float altura, int peso, float renda,
             String naturalidade, Hobby hobby, EstadoCivil estadoCivil, Escolaridade escolaridade, boolean feliz,
             Moradia moradia) {
-                this.setNome(nome);
-                this.dataNascimento = dataNascimento;
-        this.genero = genero;
-        this.altura = altura;
-        this.peso = peso;
-        this.renda = renda;
-        this.naturalidade = naturalidade;
-        this.hobby = hobby;
-        this.estadoCivil = estadoCivil;
-        this.escolaridade = escolaridade;
-        this.feliz = feliz;
-        this.moradia = moradia;
+        this.setNome(nome);
+        this.setDataNascimento(dataNascimento);
+        this.setGenero(genero);
+        this.setAltura(altura);
+        this.setPeso(peso);
+        this.setRenda(renda);
+        this.setNaturalidade(naturalidade);
+        this.setHobby(hobby);
+        this.setEstadoCivil(estadoCivil);
+        this.setEscolaridade(escolaridade);
+        this.setFeliz(feliz);
+        this.setMoradia(moradia);
     }
 
     public Pessoa(String nome) {
         this.setNome(nome);
     }
+
 
     @Override
     public String toString() {

@@ -5,11 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Locale;
+
 
 
 public class Dataset {
@@ -112,7 +111,7 @@ public class Dataset {
         }
         return sum / numPessoas;
     }
-
+ 
     public float maxPeso() {
         float max = Float.NEGATIVE_INFINITY;
         for (int i = 0; i < numPessoas; i++) {
@@ -141,15 +140,42 @@ public class Dataset {
         return sum / numPessoas;
     }
 
-    public float percentAdult() {
+    public float percentAdulto() {
         int count = 0;
-        LocalDate today = LocalDate.now();
         for (int i = 0; i < numPessoas; i++) {
-            if (pessoas[i].getDataNascimento().until(today).getYears() >= 18) {
+            if (pessoas[i].isAdulto()) {
                 count++;
             }
         }
         return ((float) count) / numPessoas;
+    }
+
+    public float maxRenda() {
+        float max = Float.NEGATIVE_INFINITY;
+        for (int i = 0; i < numPessoas; i++) {
+            if (max < pessoas[i].getRenda()) {
+                max = pessoas[i].getRenda();
+            }
+        }
+        return max;
+    }
+
+    public float minRenda() {
+        float min = Float.POSITIVE_INFINITY;
+        for (int i = 0; i < numPessoas; i++) {
+            if (min > pessoas[i].getRenda()) {
+                min = pessoas[i].getRenda();
+            }
+        }
+        return min;
+    }
+
+    public float avgRenda() {
+        float sum = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            sum += pessoas[i].getRenda();
+        }
+        return sum / numPessoas;
     }
 
     public float percentGenero(Genero genero) {
@@ -260,10 +286,10 @@ public class Dataset {
         return currentValue;
     }
 
-    public float percentHobby() {
+    public float percentHobby(Hobby hobby) {
         int count = 0;
         for (int i = 0; i < numPessoas; i++) {
-            if (!pessoas[i].getHobby().equals(Hobby.NENHUM)) {
+            if (pessoas[i].getHobby().equals(hobby)) {
                 count++;
             }
         }
