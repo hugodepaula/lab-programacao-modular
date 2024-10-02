@@ -1,69 +1,30 @@
 package br.lpm.business;
 
-/* Requisitos
-Baseado no código do exercício "Cadastro de Pessoas", crie um dataset de pessoas. Um dataset é uma classe que possui uma coleção de elementos do tipo pessoa e permite realizar operações sobre este conjunto de elementos.
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
-A classe Dataset deve ter os seguintes atributos:
 
-pessoas: Pessoa[], uma lista de pessoas.
-MAX_PESSOAS: atributo static final que representa o tamanho máximo do dataset.
-A classe Dataset deve ter os seguintes métodos de acesso:
 
-addPessoa(Pessoa): adiciona uma pessoa na coleção.
-removePessoa(Pessoa): remove uma pessoa da coleção.
-removePessoaByName(String): remove uma pessoa da coleção baseada em seu nome.
-replacePessoa(old: Pessoa, new: Pessoa): substitui uma pessoa por outra.
-getPessoaByName(String): retorna uma pessoa baseada em seu nome.
-getAll(): retorna todo o vetor de pessoas.
-removeAll(): apaga todo o vetor de pessoas.
-A classe Dataset deve ter os seguintes métodos de comportamento:
-
-size(): retorna o número de elementos do dataset.
-maxAltura(): retorna a maior altura.
-minAltura(): retorna a menor altura.
-avgAltura(): retorna a altura média.
-maxPeso(): retorna a maior peso.
-minPeso(): retorna a menor peso.
-avgPeso(): retorna a altura pseo.
-percentAdult(): float: retorna a porcentagem de pessoas maiores de idade na coleção. Para manter a alta coesão e baixo acoplamento, pode ser necessário alterar a classe Pessoa.
-percentEstadoCivil(enum EstadoCivil): retorna a porcentagem de pessoas com o estado civil determinado pelo parâmetro.
-modeEstadoCivil(): retorna o estado civil mais frequente.
-percentEscolaridade(enum  Escolaridade): retorna a porcentagem de pessoas com a formação acadêmica determinada pelo parâmetro.
-modeEscolaridade(): retorna a formação acadêmica mais frequente.
-percentMoradia(enum  Moradia): retorna a porcentagem de pessoas com a moradia determinada pelo parâmetro.
-modeMoradia(): retorna a Moradia mais frequente.
-percentHobby(): retorna a porcentagem de pessoas com hobbies.
-percentFeliz(): retorna a porcentagem de pessoas felizes.
-Implementação
-Deverá ser criado um projeto Java que utiliza o Maven como build tool, sem a utilização de Archetypes.
-
-O nome do Group ID deve ser: br.lpm
-O nome do Artifact ID deve ser: dataset
-Substitua o arquivo pom.xml pelo arquivo a seguir: pom.xmlDownload pom.xml
-Deverá ser criada uma pasta chamada "uml" na raiz do projeto. Nesta pasta, deverá ser criado um arquivo chamado "uml-class-diagram" contendo o diagrama de classes baseada na UML, utilizando o plugin/extensão "UMLet" (https://www.umlet.com/Links to an external site.).
-
-Deverá ser implementado:
-
-A classe Dataset, com seus atributos e médodos conforme especificado.
-A classe DatasetTest, que testa todos os requisitos. 
-A classe Dataset e a classe Pessoa devem estar em um pacote chamado business.
-A classe DatasetTest deve estar na pasta de testes do projeto Maven.
-A classe PessoaTest deve ser adaptada à nova classe Pessoa e deve estar na pasta de testes do projeto Maven.
-A classe Main, com o método main que realiza o cadastro de pessoas em um atributo público e estático do tipo Dataset.
-Utilizando a biblioteca JFreeChart (https://www.jfree.org/jfreechart/Links to an external site.), implemente na classe Main um método público e estático histogramEscolaridade() que plota o histograma com a distribuição das Escolaridades.
-Utilizando a biblioteca JFreeChart (https://www.jfree.org/jfreechart/Links to an external site.), implemente na classe Main um método público e estático pieHobby() que plota um gráfico de torta (Pie chart) com a distribuição dos Hobbies.
-A classe Main deve estar em um pacote chamado main.
-Entrega
-O trabalho deve ser entregue no Github Classroom, no Assignment: https://classroom.github.com/a/qIs7DOQ8Links to an external site. Links to an external site.
-
-Deverá ser entregue todo o conteúdo do projeto Maven no Github Classrrom. A pasta raiz do repositório deve replicar a pasta raiz do projeto Maven.
-Não é para entregar nenhum arquivo zip, de forma alguma. Arquivos zip não serão avaliados.
-Os alunos devem ser capazes de explicar os códigos submetidos. Caso o aluno utilize algum código gerado externamente e não souber explicar o código receberá 0 (zero). 
- */
 public class Dataset {
+    private static final int NOT_FOUND = -1;
     private static final int MAX_PESSOAS = 1000;
     private Pessoa[] pessoas = new Pessoa[MAX_PESSOAS];
     private int numPessoas = 0;
+
+    private int searchPessoaByName(String nome) {
+        for (int pos = 0; pos < numPessoas; pos++) {
+            if (pessoas[pos].getNome().equalsIgnoreCase(nome)) {
+                return pos;
+            }
+        }
+        return NOT_FOUND;
+    }
 
     public void addPessoa(Pessoa pessoa) {
         if (numPessoas < MAX_PESSOAS) {
@@ -72,21 +33,43 @@ public class Dataset {
     }
 
     public void removePessoa(Pessoa pessoa) {
-        
+        for (int pos = 0; pos < numPessoas; pos++) {
+            if (pessoas[pos].equals(pessoa)) {
+                for (int i = pos + 1; i < numPessoas; i++) {
+                    pessoas[i - 1] = pessoas[i];
+                }
+                pessoas[--numPessoas] = null;
+            }
+        }
     }
 
     public void removePessoaByName(String pessoa) {
-        
+        int pos = searchPessoaByName(pessoa);
+        if (pos != NOT_FOUND) {
+            for (int i = pos + 1; i < numPessoas; i++) {
+                pessoas[i - 1] = pessoas[i];
+            }
+            pessoas[--numPessoas] = null;
+        }
     }
 
     public void replacePessoa(Pessoa oldPessoa, Pessoa newPessoa) {
-
+        int pos = searchPessoaByName(oldPessoa.getNome());
+        if (pos != NOT_FOUND) {
+            pessoas[pos] = newPessoa;
+        }
     }
 
     public Pessoa getPessoaByName(String nome) {
-        return null;
+        int pos = searchPessoaByName(nome);
+        if (pos != NOT_FOUND) {
+            return pessoas[pos];
+        } else {
+            return null;
+        }
     }
-    public Pessoa[] getAll(){
+
+    public Pessoa[] getAll() {
         return pessoas;
     }
 
@@ -95,6 +78,10 @@ public class Dataset {
             pessoas[i] = null;
         }
         numPessoas = 0;
+    }
+
+    public int size() {
+        return numPessoas;
     }
 
     public float maxAltura() {
@@ -116,18 +103,307 @@ public class Dataset {
         }
         return min;
     }
-    
+
     public float avgAltura() {
         float sum = 0;
         for (int i = 0; i < numPessoas; i++) {
             sum += pessoas[i].getAltura();
         }
-        return sum/numPessoas;
+        return sum / numPessoas;
+    }
+ 
+    public float maxPeso() {
+        float max = Float.NEGATIVE_INFINITY;
+        for (int i = 0; i < numPessoas; i++) {
+            if (max < pessoas[i].getPeso()) {
+                max = pessoas[i].getPeso();
+            }
+        }
+        return max;
     }
 
-    
-    public void normalizeField(String fieldName) {
+    public float minPeso() {
+        float min = Float.POSITIVE_INFINITY;
+        for (int i = 0; i < numPessoas; i++) {
+            if (min > pessoas[i].getPeso()) {
+                min = pessoas[i].getPeso();
+            }
+        }
+        return min;
+    }
+
+    public float avgPeso() {
+        float sum = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            sum += pessoas[i].getPeso();
+        }
+        return sum / numPessoas;
+    }
+
+    public float percentAdulto() {
+        int count = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            if (pessoas[i].isAdulto()) {
+                count++;
+            }
+        }
+        return ((float) count) / numPessoas;
+    }
+
+    public float maxRenda() {
+        float max = Float.NEGATIVE_INFINITY;
+        for (int i = 0; i < numPessoas; i++) {
+            if (max < pessoas[i].getRenda()) {
+                max = pessoas[i].getRenda();
+            }
+        }
+        return max;
+    }
+
+    public float minRenda() {
+        float min = Float.POSITIVE_INFINITY;
+        for (int i = 0; i < numPessoas; i++) {
+            if (min > pessoas[i].getRenda()) {
+                min = pessoas[i].getRenda();
+            }
+        }
+        return min;
+    }
+
+    public float avgRenda() {
+        float sum = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            sum += pessoas[i].getRenda();
+        }
+        return sum / numPessoas;
+    }
+
+    public float percentGenero(Genero genero) {
+        int count = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            if (pessoas[i].getGenero().equals(genero)) {
+                count++;
+            }
+        }
+        return ((float) count) / numPessoas;
+    }
+
+    public Genero modeGenero() {
+        Genero[] values = Genero.values();
+        int[] count = new int[values.length];
+        int currentMax = -1;
+        Genero currentValue = null;
+
+        for (int i = 0; i < numPessoas; i++) {
+            int val = pessoas[i].getGenero().getValue();
+            count[val]++;
+            if (count[val] > currentMax) {
+                currentMax = count[val];
+                currentValue = pessoas[i].getGenero();
+            }
+        }
+        return currentValue;
+    }
+
+   public float percentEstadoCivil(EstadoCivil estadoCivil) {
+        int count = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            if (pessoas[i].getEstadoCivil().equals(estadoCivil)) {
+                count++;
+            }
+        }
+        return ((float) count) / numPessoas;
+    }
+
+    public EstadoCivil modeEstadoCivil() {
+        EstadoCivil[] values = EstadoCivil.values();
+        int[] count = new int[values.length];
+        int currentMax = -1;
+        EstadoCivil currentValue = null;
+
+        for (int i = 0; i < numPessoas; i++) {
+            int val = pessoas[i].getEstadoCivil().getValue();
+            count[val]++;
+            if (count[val] > currentMax) {
+                currentMax = count[val];
+                currentValue = pessoas[i].getEstadoCivil();
+            }
+        }
+        return currentValue;
+    }
+
+    public float percentEscolaridade(Escolaridade escolaridade) {
+        int count = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            if (pessoas[i].getEscolaridade().equals(escolaridade)) {
+                count++;
+            }
+        }
+        return ((float) count) / numPessoas;
+    }
+
+    public Escolaridade modeEscolaridade() {
+        Escolaridade[] values = Escolaridade.values();
+        int[] count = new int[values.length];
+        int currentMax = -1;
+        Escolaridade currentValue = null;
+
+        for (int i = 0; i < numPessoas; i++) {
+            int val = pessoas[i].getEscolaridade().getValue();
+            count[val]++;
+            if (count[val] > currentMax) {
+                currentMax = count[val];
+                currentValue = pessoas[i].getEscolaridade();
+            }
+        }
+        return currentValue;
+    }
+
+    public float percentMoradia(Moradia moradia) {
+        int count = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            if (pessoas[i].getMoradia().equals(moradia)) {
+                count++;
+            }
+        }
+        return ((float) count) / numPessoas;
+    }
+
+    public Moradia modeMoradia() {
+        Moradia[] values = Moradia.values();
+        int[] count = new int[values.length];
+        int currentMax = -1;
+        Moradia currentValue = null;
+
+        for (int i = 0; i < numPessoas; i++) {
+            int val = pessoas[i].getMoradia().getValue();
+            count[val]++;
+            if (count[val] > currentMax) {
+                currentMax = count[val];
+                currentValue = pessoas[i].getMoradia();
+            }
+        }
+        return currentValue;
+    }
+
+    public float percentHobby(Hobby hobby) {
+        int count = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            if (pessoas[i].getHobby().equals(hobby)) {
+                count++;
+            }
+        }
+        return ((float) count) / numPessoas;
+    }
+
+    public Hobby modeHobby() {
+        Hobby[] values = Hobby.values();
+        int[] count = new int[values.length];
+        int currentMax = -1;
+        Hobby currentValue = null;
+
+        for (int i = 0; i < numPessoas; i++) {
+            int val = pessoas[i].getHobby().getValue();
+            count[val]++;
+            if (count[val] > currentMax) {
+                currentMax = count[val];
+                currentValue = pessoas[i].getHobby();
+            }
+        }
+        return currentValue;
+    }
+
+    public float percentFeliz() {
+        int count = 0;
+        for (int i = 0; i < numPessoas; i++) {
+            if (pessoas[i].isFeliz()) {
+                count++;
+            }
+        }
+        return ((float) count) / numPessoas;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.stream(pessoas).map(Pessoa::getNome).reduce("", (a, b) -> a + b + "\n");
+    }
+
+    public void loadDataFromCSV(String filename) throws Exception {
+
+        try (BufferedReader file = new BufferedReader(new FileReader(filename))) {
+
+            // Remove linha de título
+            String line = file.readLine();
+
+            line = file.readLine();
+            
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setDecimalSeparator(',');
+            DecimalFormat format = new DecimalFormat("0.#");
+            format.setDecimalFormatSymbols(symbols);
+
+            while (line != null && this.numPessoas < Dataset.MAX_PESSOAS) {
+                String[] fields = line.split(";");
+                String nome = fields[0];
+                LocalDate dataNascimento = LocalDate.parse(fields[1], DateTimeFormatter.ofPattern("M/d/yyyy"));
+                Genero genero = Genero.parseGenero(fields[2]);
+                float altura =   format.parse(fields[3]).floatValue();
+                int peso = format.parse(fields[4]).intValue();
+                float renda = format.parse(fields[5]).floatValue();
+                String naturalidade = fields[6];
+                Moradia moradia = Moradia.parseMoradia(fields[7]);
+                EstadoCivil estadoCivil = EstadoCivil.parseEstadoCivil(fields[8]);
+                Escolaridade escolaridade = Escolaridade.parseEscolaridade(fields[9]);
+                Hobby hobby = Hobby.parseHobby(fields[10]);
+                boolean feliz = fields[11].equalsIgnoreCase("Sim");
+
+                pessoas[numPessoas++] = new Pessoa(nome, dataNascimento, genero, altura, peso, renda,
+                naturalidade, hobby, estadoCivil, escolaridade, feliz, moradia) ;
+                line = file.readLine();
+            }
+        } catch (IOException e) {
+
+        }
+
+    }
+
+    public float[] normalizeField(String fieldName) {
+
+        float[] field = new float[numPessoas];
+
         if (fieldName.equalsIgnoreCase("Altura")) {
+            float maxAltura = this.maxAltura();
+            float minAltura = this.minAltura();
+            float difAltura = maxAltura - minAltura;
+
+            for (int i = 0; i < numPessoas; i++) {
+                field[i] = (pessoas[i].getAltura() - minAltura) / difAltura;
+            }
+        } else if (fieldName.equalsIgnoreCase("Peso")) {
+            float maxPeso = this.maxPeso();
+            float minPeso = this.minPeso();
+            float difPeso = maxPeso - minPeso;
+
+            for (int i = 0; i < numPessoas; i++) {
+                field[i] = ((float) (pessoas[i].getPeso() - minPeso)) / difPeso;
+            }
+        } else if (fieldName.equalsIgnoreCase("Renda")) {
+            float maxRenda = this.maxRenda();
+            float minRenda = this.minRenda();
+            float difRenda = maxRenda - minRenda;
+
+            for (int i = 0; i < numPessoas; i++) {
+                field[i] = ((pessoas[i].getRenda() - minRenda) / difRenda);
+            }
+        } else if (fieldName.equalsIgnoreCase("Altura")) {
+            float maxAltura = this.maxAltura();
+            float minAltura = this.minAltura();
+            float difAltura = maxAltura - minAltura;
+
+            for (int i = 0; i < numPessoas; i++) {
+                pessoas[i].setAltura((pessoas[i].getAltura() - minAltura) / difAltura);
+            }
+        } else if (fieldName.equalsIgnoreCase("Altura")) {
             float maxAltura = this.maxAltura();
             float minAltura = this.minAltura();
             float difAltura = maxAltura - minAltura;
@@ -136,7 +412,7 @@ public class Dataset {
                 pessoas[i].setAltura((pessoas[i].getAltura() - minAltura) / difAltura);
             }
         }
-
+        return field;
     }
 
 }

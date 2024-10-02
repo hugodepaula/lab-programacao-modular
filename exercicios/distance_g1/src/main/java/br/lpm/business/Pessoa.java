@@ -16,12 +16,39 @@ public class Pessoa {
     private boolean feliz;
     private Moradia moradia;
 
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        if (nome == null) {
+            this.nome = "No Name " + this.hashCode();
+        } else if (nome.matches("[a-zA-Z áéíóúàâêãõçü]+")) {
+            this.nome = nome;
+        } 
+    }
+
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
     public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+        if (dataNascimento.isBefore(LocalDate.now())) {
+            this.dataNascimento = dataNascimento;
+        }
+    }
+
+    public boolean isAdulto() {
+        return (dataNascimento.until(LocalDate.now()).getYears() >= 18);
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
     }
 
     public float getAltura() {
@@ -29,7 +56,9 @@ public class Pessoa {
     }
 
     public void setAltura(float altura) {
-        this.altura = altura;
+        if (altura > 0 && altura <= 2.6f) {
+            this.altura = altura;
+        } 
     }
 
     public int getPeso() {
@@ -37,7 +66,9 @@ public class Pessoa {
     }
 
     public void setPeso(int peso) {
-        this.peso = peso;
+        if (peso > 0 && peso < 600) {
+            this.peso = peso;
+        } 
     }
 
     public float getRenda() {
@@ -45,7 +76,9 @@ public class Pessoa {
     }
 
     public void setRenda(float renda) {
-        this.renda = renda;
+        if (renda >= 0) {
+            this.renda = renda;
+        }
     }
 
     public String getNaturalidade() {
@@ -53,7 +86,9 @@ public class Pessoa {
     }
 
     public void setNaturalidade(String naturalidade) {
-        this.naturalidade = naturalidade;
+        if (naturalidade.matches("[a-zA-Z áéíóúàâêãõçü]+")) {
+            this.naturalidade = naturalidade;
+        } 
     }
 
     public Hobby getHobby() {
@@ -96,20 +131,42 @@ public class Pessoa {
         this.moradia = moradia;
     }
 
-    public String getNome() {
-        return nome;
+    public Pessoa(String nome, LocalDate dataNascimento, Genero genero, float altura, int peso, float renda,
+            String naturalidade, Hobby hobby, EstadoCivil estadoCivil, Escolaridade escolaridade, boolean feliz,
+            Moradia moradia) {
+        this.setNome(nome);
+        this.setDataNascimento(dataNascimento);
+        this.setGenero(genero);
+        this.setAltura(altura);
+        this.setPeso(peso);
+        this.setRenda(renda);
+        this.setNaturalidade(naturalidade);
+        this.setHobby(hobby);
+        this.setEstadoCivil(estadoCivil);
+        this.setEscolaridade(escolaridade);
+        this.setFeliz(feliz);
+        this.setMoradia(moradia);
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public Pessoa(String nome) {
+        this.setNome(nome);
     }
 
-    public Genero getGenero() {
-        return genero;
-    }
 
-    public void setGenero(Genero genero) {
-        this.genero = genero;
+    @Override
+    public String toString() {
+        return String.join(", ", 
+            nome, 
+            genero.toString(), 
+            "Altura: " + Float.toString(altura), 
+            "Peso: " + Integer.toString(peso), 
+            "Renda: " + Float.toString(renda), 
+            "Naturalidade: " + naturalidade,
+            "Hobby: " + hobby.toString(),
+            "Estado Civil: " + estadoCivil.toString(),
+            "Escolaridade: " + escolaridade.toString(),
+            ((feliz) ? "Feliz" : "Infeliz"),
+            "Moradia: " + moradia.toString());
     }
 
 }
