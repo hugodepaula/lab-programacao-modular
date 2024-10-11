@@ -10,7 +10,7 @@ public class PessoaTest {
     public static Pessoa pessoa;
     @BeforeEach
     public void setUp() throws Exception {
-        pessoa = new Pessoa();
+        pessoa = new Pessoa("Joaquim");
     }
 
 
