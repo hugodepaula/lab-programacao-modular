@@ -1,18 +1,18 @@
-Nome da Pessoa:;Data de Nascimento:;Altura (em metros):;Peso (em quilos):;Estado Civil:;Formação acadêmica:;Profissão;Possui vida social ativa?;Possui Hobby:;Pratica atividade física (dias na semana):;Estado de saúde
-Lucas;12/03/2004;1,85;70;Solteiro;Ensino Médio;Autônomo;Não;Sim;6;8
-Marcio Silva;09/06/2024;1,82;65;Solteiro;Ensino Médio;CLT;Sim;Sim;4;9
-Mateus ;8/16/2005;1,7;65;Solteiro;Ensino Médio;Estudante;Sim;Sim;4;10
-Pedro Lucas Contão Tomich;8/29/2005;1,75;71;Solteiro;Educação superior;Estudante;Não;Sim;2;5
-Linus Torvalds;12/28/1988;1,77;75;Casado;Educação superior;Empresário;Sim;Sim;3;7
-Manoel ;5/16/1985;1,86;70;Viúvo;Educação superior;Autônomo;Sim;Sim;4;9
-Carmem ;10/04/2005;1,68;63;Solteiro;Ensino Médio;Estudante;Sim;Sim;3;8
-Davi Gomes Amaral;2/17/2006;1,86;72;Solteiro;Ensino Médio;Estudante;Sim;Sim;3;10
-Davi Araújo Amaral;7/29/2003;1,78;74;Casado;Educação superior;Autônomo;Sim;Sim;4;10
-Henrique;04/07/2006;1,8;70;Solteiro;Ensino Médio;Estudante;Não;Sim;4;10
-Carlos Alberto Nascimento da Cunha;09/06/1984;1,78;78;União Estável;Educação superior;Autônomo;Sim;Sim;5;9
-Thiago;10/13/2005;1,68;65;Solteiro;Ensino Médio;Estudante;Sim;Sim;6;10
-Luiz Felipe Luppi Mendonça;08/11/2003;1,81;95;Solteiro;Ensino Médio;Estudante;Sim;Sim;0;7
-Herbert Cardoso;07/01/1963;1,84;86;Divorciado;Educação superior;CLT;Sim;Sim;3;8
-Pedro Ribeiro;6/25/2004;1,86;82;Solteiro;Educação superior;Estudante;Não;Sim;5;8
-Helio Ernesto;2/21/2004;1,8;90;Solteiro;Ensino Médio;Estudante;Não;Sim;4;10
-Marcelo;5/16/1969;1,75;75;Casado;Educação superior;Autônomo;Não;Não;7;8
+Nome da Pessoa:;Data de Nascimento:;Altura (em metros):;Peso (em quilos):;Estado Civil:;FormaÃ§Ã£o acadÃªmica:;ProfissÃ£o;Possui vida social ativa?;Possui Hobby:;Pratica atividade fÃ­sica (dias na semana):;Estado de saÃºde
+Lucas;12/03/2004;1,85;70;Solteiro;Ensino MÃ©dio;AutÃ´nomo;NÃ£o;Sim;6;8
+Marcio Silva;09/06/2024;1,82;65;Solteiro;Ensino MÃ©dio;CLT;Sim;Sim;4;9
+Mateus ;8/16/2005;1,7;65;Solteiro;Ensino MÃ©dio;Estudante;Sim;Sim;4;10
+Pedro Lucas ContÃ£o Tomich;8/29/2005;1,75;71;Solteiro;EducaÃ§Ã£o superior;Estudante;NÃ£o;Sim;2;5
+Linus Torvalds;12/28/1988;1,77;75;Casado;EducaÃ§Ã£o superior;EmpresÃ¡rio;Sim;Sim;3;7
+Manoel ;5/16/1985;1,86;70;ViÃºvo;EducaÃ§Ã£o superior;AutÃ´nomo;Sim;Sim;4;9
+Carmem ;10/04/2005;1,68;63;Solteiro;Ensino MÃ©dio;Estudante;Sim;Sim;3;8
+Davi Gomes Amaral;2/17/2006;1,86;72;Solteiro;Ensino MÃ©dio;Estudante;Sim;Sim;3;10
+Davi AraÃºjo Amaral;7/29/2003;1,78;74;Casado;EducaÃ§Ã£o superior;AutÃ´nomo;Sim;Sim;4;10
+Henrique;04/07/2006;1,8;70;Solteiro;Ensino MÃ©dio;Estudante;NÃ£o;Sim;4;10
+Carlos Alberto Nascimento da Cunha;09/06/1984;1,78;78;UniÃ£o EstÃ¡vel;EducaÃ§Ã£o superior;AutÃ´nomo;Sim;Sim;5;9
+Thiago;10/13/2005;1,68;65;Solteiro;Ensino MÃ©dio;Estudante;Sim;Sim;6;10
+Luiz Felipe Luppi MendonÃ§a;08/11/2003;1,81;95;Solteiro;Ensino MÃ©dio;Estudante;Sim;Sim;0;7
+Herbert Cardoso;07/01/1963;1,84;86;Divorciado;EducaÃ§Ã£o superior;CLT;Sim;Sim;3;8
+Pedro Ribeiro;6/25/2004;1,86;82;Solteiro;EducaÃ§Ã£o superior;Estudante;NÃ£o;Sim;5;8
+Helio Ernesto;2/21/2004;1,8;90;Solteiro;Ensino MÃ©dio;Estudante;NÃ£o;Sim;4;10
+Marcelo;5/16/1969;1,75;75;Casado;EducaÃ§Ã£o superior;AutÃ´nomo;NÃ£o;NÃ£o;7;8
