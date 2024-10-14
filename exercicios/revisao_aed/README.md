@@ -1,10 +1,10 @@
-# Gerenciamento de Frotas - Trabalho de Laboratório de Programação Modular
+# Revisão de Algoritmos e Estruturas de Dados 1
 
 Prof. Hugo de Paula
 
 ### Descrição do Problema:
 
-O objetivo desta tarefa é fazer uma revisão dos principais conceitos de Algoritmos e Lógica de Programação em Java. 
+O objetivo desta tarefa é fazer uma revisão dos principais conceitos de Algoritmos e Estruturas de Dados 1 em Java. 
 
 Você deverá:
 
