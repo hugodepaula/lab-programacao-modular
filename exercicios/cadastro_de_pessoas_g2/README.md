@@ -7,17 +7,16 @@ Realize um cadastro de pessoas com os seguintes requisitos.
 A classe **Pessoa** deve ter os seguintes atributos:
 
 *   **nome**: String, alfabético com apenas letras e espaço.
+*   **altura**: float, 0 < altura < 3.
+*   **peso**: int, 0 < peso, < 500.
 *   **dataNascimento**: LocalDate, dataNascimento < hoje.
-*   **genero**: enum Genero = {FEMININO, MASCULINO, NAO\_BINARIO, NAO\_RESPONDER}.
-*   **altura**: float, 0 < altura < 2.60.
-*   **peso**: int, 0 < peso, < 600.
-*   **renda**: float, renda >= 0.
-*   **naturalidade**: String
-*   **hobby**: enum Hobby = {ARTE, ESPORTE, CINEMA, LIVRO, MÚSICA, CULINÁRIA, GAME, NENHUM}.
-*   **estadoCivil**: enum EstadoCivil = {SOLTEIRO, CASADO, VIUVO, SEPARADO, DIVORCIADO}.
-*   **escolaridade**: enum Escolaridade = {NENHUMA, FUNDAMENTAL, MEDIO, SUPERIOR, POS\_GRADUACAO}.
-*   **feliz:** boolean.
-*   **moradia**: enum Moradia = {COM\_FAMILIA, ALUGUEL, CASA\_PROPRIA}.
+*   **estadoCivil**: enum EstadoCivil = {SOLTEIRO, CASADO, UNIAO_ESTAVEL, VIUVO, SEPARADO, DIVORCIADO}.
+*   **formacaoAcademica**: enum FormacaoAcademica = {NENHUMA, BASICA, MEDIA, SUPERIOR}.
+*   **profissao**: enum Profissao = {DESEMPREGADO, ESTUDANTE, AUTONOMO, CLT, EMPRESARIO}.
+*   **vidaSocial:** boolean.
+*   **hobby:** boolean.
+*   **atividadeFisica**: int, onde valor armazena quantos dias na semana pratica atividade física, 0 <= atividadeFisica <= 7.
+*   **saude**: int, onde valor representa o estado de saúde em uma escala entre 1 e 10.
 
 ## Implementação
 
