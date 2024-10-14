@@ -1,42 +1,69 @@
-# Cadastro de Pessoas
+# Dataset de Pessoas
 
 ## Requisitos
 
-Realize um cadastro de pessoas com os seguintes requisitos.
+Baseado no código do exercício "Cadastro de Pessoas", crie um dataset de pessoas. Um dataset é uma classe que possui uma coleção de elementos do tipo pessoa e permite realizar operações sobre este conjunto de elementos.
 
-A classe **Pessoa** deve ter os seguintes atributos:
+A classe **Dataset** deve ter os seguintes atributos:
 
-*   **nome**: String, alfabético com apenas letras e espaço.
-*   **dataNascimento**: LocalDate, dataNascimento < hoje.
-*   **genero**: enum Genero = {FEMININO, MASCULINO, NAO\_BINARIO, NAO\_RESPONDER}.
-*   **altura**: float, 0 < altura < 2.60.
-*   **peso**: int, 0 < peso, < 600.
-*   **renda**: float, renda >= 0.
-*   **naturalidade**: String
-*   **hobby**: enum Hobby = {ARTE, ESPORTE, CINEMA, LIVRO, MÚSICA, CULINÁRIA, GAME, NENHUM}.
-*   **estadoCivil**: enum EstadoCivil = {SOLTEIRO, CASADO, VIUVO, SEPARADO, DIVORCIADO}.
-*   **escolaridade**: enum Escolaridade = {NENHUMA, FUNDAMENTAL, MEDIO, SUPERIOR, POS\_GRADUACAO}.
-*   **feliz:** boolean.
-*   **moradia**: enum Moradia = {COM\_FAMILIA, ALUGUEL, CASA\_PROPRIA}.
+*   **pessoas**: Pessoa[], uma lista de pessoas.
+*   **MAX_PESSOAS**: atributo static final que representa o tamanho máximo do dataset.
+
+A classe **Dataset** deve ter os seguintes métodos de acesso:
+
+*   **addPessoa(Pessoa)**: adiciona uma pessoa na coleção.
+*   **removePessoa(Pessoa)**: remove uma pessoa da coleção.
+*   **removePessoaByName(String)**: remove uma pessoa da coleção baseada em seu nome.
+*   **replacePessoa(old: Pessoa, new: Pessoa)**: substitui uma pessoa por outra.
+*   **getPessoaByName(String)**: retorna uma pessoa baseada em seu nome.
+*   **getAll()**: retorna todo o vetor de pessoas.
+*   **removeAll()**: apaga todo o vetor de pessoas.
+
+A classe **Dataset** deve ter os seguintes métodos de comportamento:
+
+*   **size()**: retorna o número de elementos do dataset.
+*   **maxAltura()**: retorna a maior altura.
+*   **minAltura()**: retorna a menor altura.
+*   **avgAltura()**: retorna a altura média.
+*   **maxPeso()**: retorna a maior altura.
+*   **minPeso()**: retorna a menor altura.
+*   **avgPeso()**: retorna a altura média.
+*   **percentAdult()**: float: retorna a porcentagem de pessoas maiores de idade na coleção. Para manter a alta coesão e baixo acoplamento, pode ser necessário alterar a classe Pessoa.
+*   **percentEstadoCivil(enum EstadoCivil)**: retorna a porcentagem de pessoas com o estado civil determinado pelo parâmetro.
+*   **modeEstadoCivil()**: retorna o estado civil mais frequente.
+*   **percentFormacaoAcademica(enum  FormacaoAcademica)**: retorna a porcentagem de pessoas com a formação acadêmica determinada pelo parâmetro.
+*   **modeFormacaoAcademica()**: retorna a formação acadêmica mais frequente.
+*   **percentProfissao(enum  Profissao)**: retorna a porcentagem de pessoas com a profissão determinada pelo parâmetro.
+*   **modeProfissao()**: retorna a profissão mais frequente.
+*   **percentVidaSocial()**: retorna a porcentagem de pessoas com vida social ativa.
+*   **percentHobby()**: retorna a porcentagem de pessoas com hobbies.
+*   **avgAtividadeFisica()**: retorna a média de dias na semana de prática atividade física.
+*   **svdAtividadeFisica()**: retorna o desvio padrão dos dias na semana de prática atividade física.
+*   **avgSaude()**: retorna a média do estado de saúde das pessoas.
+*   **svdSaude()**: retorna o desvio padrão do estado de saúde das pessoas.
 
 ## Implementação
 
 Deverá ser implementado:
 
-1.  A classe **Pessoa**, com seus atributos, _getters_ e _setters_. Os _setters_ devem validar os campos conforme requisitos apresentados acima.
-2.  Construtor com parâmetros para a classe **Pessoa**.
-3.  Os tipos enumerados (_enum_) com visibilidade pública em seus respectivos arquivos.
-4.  A classe **Main**, com o método _main_ que realiza o cadastro de pessoas em um atributo público e estático da classe **Main**, que é um vetor de **Pessoa**.
-5.  A classe **PessoaTest**, que testa todos os requisitos implementados nos _setters_. 
-6.  A classe **Pessoa** e os tipos enumerados devem estar em um pacote chamado **business**.
-7.  A classe **Main** deve estar em um pacote chamado **main**.
-8.  A classe **PessoaTest** deve estar em um pacote chamado **test**.
+1. A classe **Dataset**, com seus atributos e médodos conforme especificado.
+2. A classe **DatasetTest**, que testa todos os requisitos. 
+3. A classe **Dataset** e a classe Pessoa devem estar em um pacote chamado **business**.
+4. A classe **DatasetTest** deve estar na pasta de testes do projeto **Maven**.
+5. A classe **PessoaTest** deve ser adaptada à nova classe Pessoa e deve estar na pasta de testes do projeto **Maven**.
+6. A classe **Main**, com o método main que realiza o cadastro de pessoas em um atributo público e estático do tipo **Dataset**.
+7. Utilizando a biblioteca **JFreeChart** (https://www.jfree.org/jfreechart/), implemente na classe **Main** um método público e estático **histogramFormacaoAcadêmica()**  que plota o histograma com a distribuição das Formações Acadêmicas.
+8. Utilizando a biblioteca **JFreeChart** (https://www.jfree.org/jfreechart/), implemente na classe **Main** um método público e estático **pieProfissao()** que plota um gráfico de torta (Pie chart) com a distribuição das Profissões.
+9. A classe **Main** deve estar em um pacote chamado **main**.
+10. Deverá ser criada uma pasta chamada "**uml**" na raiz do projeto. Nesta pasta, deverá ser criado um arquivo chamado "**uml-class-diagram**" contendo o diagrama de classes baseada na UML, utilizando o plugin/extensão "**UMLet**" (https://www.umlet.com/).
+
+
 
 ## Entrega
 
 O trabalho deve ser entregue no Github Classroom.
 
-Utilize a ferramenta Maven para construir o projeto: group ID **br.lpm** e Artifact ID: **cadastro_de_pessoas**
+Utilize a ferramenta Maven para construir o projeto: group ID **br.lpm** e Artifact ID: **dataset**
 
 A maneira correta de fazer isso é a seguinte:
 

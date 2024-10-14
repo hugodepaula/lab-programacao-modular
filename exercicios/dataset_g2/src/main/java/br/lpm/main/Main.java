@@ -59,17 +59,17 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         dataset = new Dataset();
-        dataset.loadDataFromCSV("C:\\Users\\291599\\Documents\\lab-programacao-modular\\exercicios\\dataset_g2\\LPM - Turma 2 - Cadastro de Pessoas.csv");
+        dataset.loadDataFromCSV("D:\\OneDrive - sga.pucminas.br\\git-code\\disciplinas\\lab-programacao-modular\\exercicios\\dataset_g2\\LPM - Turma 2 - Cadastro de Pessoas.csv");
         System.out.println(dataset.size());
 
         JOptionPane.showMessageDialog(null, "\nAltura média: " + dataset.avgAltura() +
-        "\nAltura máxima: " + dataset.maxAltura() + 
-        "\nAltura mínima: " + dataset.minAltura() + 
-        "\nPeso médio: " + dataset.avgPeso() + 
-        "\nPeso máximo: " + dataset.maxPeso() + 
-        "\nPeso mínimo: " + dataset.minPeso() + 
-        "\nPorcentagem de adultos: " + Math.round(dataset.percentAdulto()*100),
-  "Relatório de pessoas",JOptionPane.INFORMATION_MESSAGE);
+            "\nAltura máxima: " + dataset.maxAltura() + 
+            "\nAltura mínima: " + dataset.minAltura() + 
+            "\nPeso médio: " + dataset.avgPeso() + 
+            "\nPeso máximo: " + dataset.maxPeso() + 
+            "\nPeso mínimo: " + dataset.minPeso() + 
+            "\nPorcentagem de adultos: " + Math.round(dataset.percentAdulto() * 100) + "%",
+             "Relatório de pessoas",JOptionPane.INFORMATION_MESSAGE);
 
         pieFormacaoAcademica();
         histogramFormacaoAcademica();

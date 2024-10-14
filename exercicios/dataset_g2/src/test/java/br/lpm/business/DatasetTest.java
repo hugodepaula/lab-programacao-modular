@@ -1,206 +1,172 @@
 package br.lpm.business;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-public class DatasetTest {
-
-    // Pessoa pessoa1 = new Pessoa("Pessoa Um", 
-    //                             LocalDate.of(1990, 1, 1),
-    //                             Genero.MASCULINO, 
-    //                             2f, 
-    //                             100, 
-    //                             5000f,
-    //                             "Cidade Um",
-    //                             Hobby.NENHUM, 
-    //                             EstadoCivil.CASADO, 
-    //                             Escolaridade.SUPERIOR, 
-    //                             false, 
-    //                             Moradia.ALUGUEL);
-    // Pessoa pessoa2 = new Pessoa("Pessoa Dois", 
-    //                             LocalDate.of(2000, 1, 1),
-    //                             Genero.MASCULINO, 
-    //                             1.75f, 
-    //                             80, 
-    //                             4000f,
-    //                             "Cidade Dois",
-    //                             Hobby.GAME, 
-    //                             EstadoCivil.SOLTEIRO, 
-    //                             Escolaridade.SUPERIOR, 
-    //                             false, 
-    //                             Moradia.COM_FAMILIA);
-    // Pessoa pessoa3 = new Pessoa("Pessoa Três", 
-    //                             LocalDate.of(2010, 1, 1),
-    //                             Genero.FEMININO, 
-    //                             1.5f, 
-    //                             60, 
-    //                             3000f,
-    //                             "Cidade Três",
-    //                             Hobby.GAME, 
-    //                             EstadoCivil.SOLTEIRO, 
-    //                             Escolaridade.MEDIO, 
-    //                             true, 
-    //                             Moradia.COM_FAMILIA);
-    // Dataset dataset = new Dataset();
-
-    // @BeforeEach
-    // public void setUp() {
-    //     dataset.addPessoa(pessoa1);
-    //     dataset.addPessoa(pessoa2);
-    //     dataset.addPessoa(pessoa3);
-    // }
+import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDate;
 
 
 
-    // @Test
-    // void testAddPessoa() {
-    //     int numPessoas = dataset.size();
-    //     dataset.addPessoa(new Pessoa("Pessoa Quatro", LocalDate.of(2020, 1, 1), Genero.FEMININO, 1.5f, 
-    //             50, 3000f, "Cidade Quatro", Hobby.GAME, EstadoCivil.SOLTEIRO, Escolaridade.MEDIO, true, Moradia.COM_FAMILIA));
-    //     assertEquals(numPessoas+1, dataset.size());
+class DatasetTest {
 
-    // }
+    private Dataset dataset;
+    private Pessoa pessoa1;
+    private Pessoa pessoa2;
 
-    // @Test
-    // void testAvgAltura() {
-    //     assertEquals(1.75f, dataset.avgAltura(), 0.01f);
-    // }
+    @BeforeEach
+    void setUp() {
+        dataset = new Dataset();
+        pessoa1 = new Pessoa("Zé Shulambs", 1.83f, 83, LocalDate.of(1977, 1, 1), EstadoCivil.CASADO, FormacaoAcademica.SUPERIOR, Profissao.CLT, true, true, 6, 7);
+        pessoa2 = new Pessoa("Maria Shulambs", 1.75f, 66, LocalDate.of(1985, 5, 15), EstadoCivil.SEPARADO, FormacaoAcademica.MEDIA, Profissao.AUTONOMO, false, true, 2, 5);
+        dataset.addPessoa(pessoa1);
+        dataset.addPessoa(pessoa2);
+    }
 
-    // @Test
-    // void testAvgPeso() {
-    //     assertEquals(80f, dataset.avgPeso(), 0.01f);
-    // }
+    @Test
+    void testAddPessoa() {
+        Pessoa pessoa3 = new Pessoa("Tereza Shulambs", 1.70f, 65, LocalDate.of(1992, 3, 10), EstadoCivil.SOLTEIRO, FormacaoAcademica.SUPERIOR, Profissao.CLT, true, false, 4, 3);
+        dataset.addPessoa(pessoa3);
+        assertEquals(3, dataset.size());
+    }
 
-    // @Test
-    // void testAvgRenda() {
-    //     assertEquals(4000f, dataset.avgRenda(), 0.01f);
-    // }
+    @Test
+    void testRemovePessoa() {
+        dataset.removePessoa(pessoa1);
+        assertEquals(1, dataset.size());
+        assertNull(dataset.getPessoaByName("Zé Shulambs"));
+    }
 
-    // @Test
-    // void testGetPessoaByName() {
-    //     Pessoa pessoax = dataset.getPessoaByName("Pessoa Um");
-    //     assertNotNull(pessoax, "Recuperando uma pessoa cadastrada.");
-    //     Pessoa pessoay = dataset.getPessoaByName("Pessoa Shulambs");
-    //     assertNull(pessoay, "Recuperando uma pessoa não cadastrada.");
-    //  }
+    @Test
+    void testRemovePessoaByName() {
+        dataset.removePessoaByName("Maria Shulambs");
+        assertEquals(1, dataset.size());
+        assertNull(dataset.getPessoaByName("Maria Shulambs"));
+    }
 
-    // @Test
-    // void testMaxAltura() {
-    //     assertEquals(2f,dataset.maxAltura(),0.01f);
-    // }
+    @Test
+    void testReplacePessoa() {
+        Pessoa pessoa3 = new Pessoa("Tereza Shulambs", 1.70f, 65, LocalDate.of(1992, 3, 10), EstadoCivil.SOLTEIRO, FormacaoAcademica.SUPERIOR, Profissao.CLT, true, false, 4, 3);
+        dataset.replacePessoa(pessoa1, pessoa3);
+        assertEquals(pessoa3, dataset.getPessoaByName("Tereza Shulambs"));
+    }
 
-    // @Test
-    // void testMaxPeso() {
-    //     assertEquals(100f,dataset.maxPeso(),0.01f);
-    // }
+    @Test
+    void testGetPessoaByName() {
+        assertEquals(pessoa1, dataset.getPessoaByName("Zé Shulambs"));
+        assertNull(dataset.getPessoaByName("Shulambs sem cabeça"));
+    }
 
-    // @Test
-    // void testMaxRenda() {
-    //     assertEquals(5000f,dataset.maxRenda(),0.01f);
-    // }
+    @Test
+    void testGetAll() {
+        Pessoa[] pessoas = dataset.getAll();
+        assertEquals(pessoa1, pessoas[0]);
+        assertEquals(pessoa2, pessoas[1]);
+    }
 
-    // @Test
-    // void testMinAltura() {
-    //     assertEquals(1.5f,dataset.minAltura(),0.01f);
-    // }
+    @Test
+    void testRemoveAll() {
+        dataset.removeAll();
+        assertEquals(0, dataset.size());
+    }
 
-    // @Test
-    // void testMinPeso() {
-    //     assertEquals(60f,dataset.minPeso(),0.01f);
-    // }
+    @Test
+    void testMaxAltura() {
+        assertEquals(1.83f, dataset.maxAltura());
+    }
 
-    // @Test
-    // void testMinRenda() {
-    //     assertEquals(3000f,dataset.minRenda(),0.01f);
-    // }
+    @Test
+    void testMinAltura() {
+        assertEquals(1.75f, dataset.minAltura());
+    }
 
-    // @Test
-    // void testModeEscolaridade() {
-    //     assertEquals(Escolaridade.SUPERIOR,dataset.modeEscolaridade());
-    // }
+    @Test
+    void testAvgAltura() {
+        assertEquals(1.79f, dataset.avgAltura(), 0.01);
+    }
 
-    // @Test
-    // void testModeEstadoCivil() {
-    //     assertEquals(EstadoCivil.SOLTEIRO,dataset.modeEstadoCivil());
-    // }
+    @Test
+    void testMaxPeso() {
+        assertEquals(83, dataset.maxPeso());
+    }
 
-    // @Test
-    // void testModeGenero() {
-    //     assertEquals(Genero.MASCULINO,dataset.modeGenero());
-    // }
+    @Test
+    void testMinPeso() {
+        assertEquals(66, dataset.minPeso());
+    }
 
-    // @Test
-    // void testModeHobby() {
-    //     assertEquals(Hobby.GAME,dataset.modeHobby());
-    // }
+    @Test
+    void testAvgPeso() {
+        assertEquals(74.5f, dataset.avgPeso(), 0.01);
+    }
 
-    // @Test
-    // void testModeMoradia() {
-    //     assertEquals(Moradia.COM_FAMILIA,dataset.modeMoradia());
-    // }
+    @Test
+    void testPercentAdulto() {
+        assertEquals(1.0f, dataset.percentAdulto());
+    }
 
-    // @Test
-    // void testPercentAdulto() {
-    //     assertEquals(2.0f/3.0f, dataset.percentAdulto(), 0.01f);
-    // }
+    @Test
+    void testPercentEstadoCivil() {
+        assertEquals(0.5f, dataset.percentEstadoCivil(EstadoCivil.CASADO));
+    }
 
-    // @Test
-    // void testPercentEscolaridade() {
-    //     assertEquals(2.0f/3.0f, dataset.percentEscolaridade(Escolaridade.SUPERIOR), 0.01f);
-    // }
+    @Test
+    void testModeEstadoCivil() {
+        Pessoa pessoa3 = new Pessoa("Tereza Shulambs", 1.70f, 65, LocalDate.of(1992, 3, 10), EstadoCivil.SEPARADO, FormacaoAcademica.SUPERIOR, Profissao.CLT, true, false, 4, 3);
+        dataset.addPessoa(pessoa3);
+       assertEquals(EstadoCivil.SEPARADO, dataset.modeEstadoCivil());
+    }
 
-    // @Test
-    // void testPercentEstadoCivil() {
-    //     assertEquals(2.0f/3.0f, dataset.percentEstadoCivil(EstadoCivil.SOLTEIRO), 0.01f);
-    // }
+    @Test
+    void testPercentFormacaoAcademica() {
+        assertEquals(0.5f, dataset.percentFormacaoAcademica(FormacaoAcademica.SUPERIOR));
+    }
 
-    // @Test
-    // void testPercentFeliz() {
-    //     assertEquals(1.0f/3.0f, dataset.percentFeliz(), 0.01f);
-    // }
+    @Test
+    void testModeFormacaoAcademica() {
+        Pessoa pessoa3 = new Pessoa("Tereza Shulambs", 1.70f, 65, LocalDate.of(1992, 3, 10), EstadoCivil.SOLTEIRO, FormacaoAcademica.SUPERIOR, Profissao.CLT, true, false, 4, 3);
+        dataset.addPessoa(pessoa3);
+       assertEquals(FormacaoAcademica.SUPERIOR, dataset.modeFormacaoAcademica());
+    }
 
-    // @Test
-    // void testPercentGenero() {
-    //     assertEquals(2.0f/3.0f, dataset.percentGenero(Genero.MASCULINO), 0.01f);
-    // }
+    @Test
+    void testPercentProfissao() {
+        assertEquals(0.5f, dataset.percentProfissao(Profissao.CLT));
+    }
 
-    // @Test
-    // void testPercentHobby() {
-    //     assertEquals(2.0f/3.0f, dataset.percentHobby(Hobby.GAME), 0.01f);
-    // }
+    @Test
+    void testModeProfissao() {
+        Pessoa pessoa3 = new Pessoa("Tereza Shulambs", 1.70f, 65, LocalDate.of(1992, 3, 10), EstadoCivil.SOLTEIRO, FormacaoAcademica.SUPERIOR, Profissao.CLT, true, false, 4, 3);
+        dataset.addPessoa(pessoa3);
+       assertEquals(Profissao.CLT, dataset.modeProfissao());
+    }
 
-    // @Test
-    // void testPercentMoradia() {
-    //     assertEquals(2.0f/3.0f, dataset.percentMoradia(Moradia.COM_FAMILIA), 0.01f);
-    // }
+    @Test
+    void testPercentHobby() {
+        assertEquals(1.0f, dataset.percentHobby());
+    }
 
-    // @Test
-    // void testRemoveAll() {
-    //     dataset.removeAll();
-    //     assertEquals(0, dataset.size());
-    // }
+    @Test
+    void testPercentVidaSocial() {
+        assertEquals(0.5f, dataset.percentVidaSocial());
+    }
 
-    // @Test
-    // void testRemovePessoa() {
-    //     dataset.removePessoa(pessoa1);
-    //     assertEquals(2, dataset.size(), "Remove pessoa cadastrada.");
-    //     dataset.removePessoa(new Pessoa("Shulambs"));
-    //     assertEquals(2, dataset.size(), "Remove pessoa não cadastrada.");
-    // }
+    @Test
+    void testAvgSaude() {
+        assertEquals(6f, dataset.avgSaude(), 0.01);
+    }
 
-    // @Test
-    // void testRemovePessoaByName() {
-    //     dataset.removePessoaByName("Pessoa Um");
-    //     assertEquals(2, dataset.size(), "Remove pessoa cadastrada.");
-    //     dataset.removePessoaByName("Shulambs");
-    //     assertEquals(2, dataset.size(), "Remove pessoa não cadastrada.");
+    @Test
+    void testSvdSaude() {
+        assertEquals(1.0f, dataset.svdSaude(), 0.01);
+    }
 
-    // }
+    @Test
+    void testAvgAtividadeFisica() {
+        assertEquals(4f, dataset.avgAtividadeFisica(), 0.01);
+    }
 
+    @Test
+    void testSvdAtividadeFisica() {
+        assertEquals(2.0f, dataset.svdAtividadeFisica(), 0.01);
+    }
 }
