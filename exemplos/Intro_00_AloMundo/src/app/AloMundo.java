@@ -29,7 +29,7 @@ public class AloMundo {
 	 */
 	public static void main(String[] args) {
 		
-		System.out.println("Bem vindos à PUC Minas!");
+		System.out.println("Bem vindos!");
 
 	}
 
