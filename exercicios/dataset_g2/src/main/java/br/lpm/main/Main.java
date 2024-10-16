@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import org.jfree.chart.ui.UIUtils;
-
 import br.lpm.business.Dataset;
 import br.lpm.business.FormacaoAcademica;
 import br.lpm.business.Profissao;
