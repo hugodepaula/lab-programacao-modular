@@ -14,8 +14,7 @@ public class DistanceMeasure {
         distance += Math.pow(Math.abs(first.getAltura() - second.getAltura()), 2);
         distance += Math.pow(Math.abs(first.getPeso() - second.getPeso()), 2);
         distance += Math.pow(Math.abs(first.getAtividadeFisica() - second.getAtividadeFisica()), 2);
-        distance += Math.pow(Math.abs(first.getSaude() - second.getSaude()), 2);
 
-        return Math.sqrt(distance/9);
+        return Math.sqrt(distance/8);
     }
 }

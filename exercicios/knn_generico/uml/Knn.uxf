@@ -1,0 +1,49 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>48</x><y>24</y><w>264</w><h>96</h></coordinates><panel_attributes>Knn
+--
+-dataset: DataSet
+-metric: Metric
+-k: int
+--
+-calculateDistances(attributes: DataPoint) : List&lt;Double&gt;
++classify(attributes: DataPoint): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>352</x><y>24</y><w>184</w><h>96</h></coordinates><panel_attributes>DataSet
+--
+-dataPoints: List&lt;DataPoint&gt;
+-attributeNames: List&lt;String&gt;
+-stateName: String
+--
++size(): int
++loadDataFromCSV(filename: String)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>176</y><w>280</w><h>88</h></coordinates><panel_attributes>DataPoint
+--
+-attributes: List&lt;Attribute&gt;
+-state: Object
+--
++getAttributes(): List&lt;Attributes&gt;
++&lt;T&gt; getState(): T
++parse(: String): Object {exceptions=IllegalFormatException}</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>112</y><w>40</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>304</x><y>56</y><w>64</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1
+</panel_attributes><additional_attributes>60;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>384</x><y>328</y><w>128</w><h>72</h></coordinates><panel_attributes>Attribute
+--
+-value: Object
+--
++setValue(: T) : Attribute
++ getValue&lt;T&gt;(): T
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>256</y><w>40</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m1=1
+m2=1..*</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>224</y><w>232</w><h>56</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+Metric
+--
+--
++distance(p1: DataPoint, p2: Datapoint): double
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>112</y><w>32</w><h>128</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>264</x><y>232</y><w>72</w><h>32</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;uses&gt;&gt;</panel_attributes><additional_attributes>10;20;70;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>8</x><y>304</y><w>224</w><h>40</h></coordinates><panel_attributes>EuclideanDistanceMetric
+--
+--
++distance(p1: DataPoint, p2: Datapoint): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>104</x><y>272</y><w>40</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>30;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>96</x><y>368</y><w>224</w><h>40</h></coordinates><panel_attributes>FelizMetric
+--
+--
++distance(p1: DataPoint, p2: Datapoint): double</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>248</x><y>272</y><w>24</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element></diagram>
