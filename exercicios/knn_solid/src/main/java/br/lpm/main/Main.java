@@ -15,7 +15,7 @@ public class Main {
   public static void main(String[] args) throws Exception {
     
     DataSet felizDataset = new DataSet();
-    DataLoader loader = new CsvLoader("D:\\OneDrive - sga.pucminas.br\\git-code\\disciplinas\\lab-programacao-modular\\exercicios\\knn_solid", ";");
+    DataLoader loader = new CsvLoader("D:\\OneDrive - sga.pucminas.br\\git-code\\disciplinas\\lab-programacao-modular\\exercicios\\knn_solid\\Felicidade.CSV", ";");
     loader.load(felizDataset);
     
     System.out.println(felizDataset);
