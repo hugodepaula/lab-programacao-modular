@@ -30,7 +30,7 @@ public class KnnClassifier extends Knn {
         // cada valor apareceu.
         Map<Object, Integer> stateCount = new HashMap<Object, Integer>();
 
-        for (int n = 0; n < k; n++) {
+        for (int n = 0; n < getK(); n++) {
             Integer f = stateCount.get(dp.get(indexes.get(n)).getState());
             if (f == null) {
                 stateCount.put(dp.get(indexes.get(n)).getState(), 1);

@@ -26,11 +26,11 @@ public class KnnRegressor extends Knn {
         // Passo 3: Calcule a saúde média dos k DataPoints mais próximos
         // e retorne como resultado.
         double sumState = 0;
-        for (int n = 0; n < k; n++) {
+        for (int n = 0; n < getK(); n++) {
             sumState += (Double) dp.get(indexes.get(n)).getState().getValue();
         }
 
-        return new Attribute(sumState / k);
+        return new Attribute(sumState / getK());
     }
 
 }
