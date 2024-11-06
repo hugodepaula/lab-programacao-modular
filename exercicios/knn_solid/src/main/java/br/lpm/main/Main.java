@@ -1,19 +1,22 @@
 package br.lpm.main;
 
-import br.lpm.business.Attribute;
-import br.lpm.business.DataPoint;
-import br.lpm.business.Dataset;
-import br.lpm.business.FelizMetric;
 import br.lpm.business.Knn;
-import br.lpm.business.Metric;
+import br.lpm.business.KnnClassifier;
+import br.lpm.data_structures.Attribute;
+import br.lpm.data_structures.DataPoint;
+import br.lpm.data_structures.DataSet;
+import br.lpm.loaders.CsvLoader;
+import br.lpm.loaders.DataLoader;
+import br.lpm.metrics.FelizMetric;
+import br.lpm.metrics.Metric;
 
 public class Main {
   
   public static void main(String[] args) throws Exception {
     
-    Dataset felizDataset = new Dataset();
-    
-    felizDataset.loadDataFromCSV("C:\\Users\\291599\\Downloads\\knn_generico\\Felicidade.CSV");
+    DataSet felizDataset = new DataSet();
+    DataLoader loader = new CsvLoader("D:\\OneDrive - sga.pucminas.br\\git-code\\disciplinas\\lab-programacao-modular\\exercicios\\knn_solid", ";");
+    loader.load(felizDataset);
     
     System.out.println(felizDataset);
     
@@ -27,10 +30,10 @@ public class Main {
     System.out.println("\nDistancia: " + m.distance(dp1, dp2));
     System.out.println("\nDistancia: " + m.distance(dp2, dp1));
     
-    Knn knn = new Knn(felizDataset, 3, new FelizMetric());
+    Knn knn = new KnnClassifier(felizDataset, 3, new FelizMetric());
 
-    System.out.println("estado: " + knn.classify(dp1));
-    System.out.println("estado: " + knn.classify(dp2));
+    System.out.println("estado: " + knn.predict(dp1));
+    System.out.println("estado: " + knn.predict(dp2));
 
     
     
@@ -44,7 +47,7 @@ public class Main {
     testDp.addAtribute(new Attribute("Sim"));
 
   
-    System.out.println("estado: " + knn.classify(testDp));
+    System.out.println("estado: " + knn.predict(testDp));
   
   
     DataPoint testDp2 = new DataPoint();
@@ -57,7 +60,7 @@ public class Main {
     testDp2.addAtribute(new Attribute("Nao"));
 
   
-    System.out.println("estado: " + knn.classify(testDp2));
+    System.out.println("estado: " + knn.predict(testDp2));
   
    
     

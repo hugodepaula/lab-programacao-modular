@@ -1,6 +1,9 @@
-package br.lpm.business;
+package br.lpm.metrics;
 
 import java.util.List;
+
+import br.lpm.data_structures.Attribute;
+import br.lpm.data_structures.DataPoint;
 
 public class FelizMetric implements Metric {
 
