@@ -1,3 +1,5 @@
+# K-NN genérico com pricípios SOLID
+
 O algoritmo K-Nearest Neighbors (K-NN) é um método de aprendizado que é pode ser utilizado tanto para tarefas de classificação quanto para tarefas de regressão. A classificação é usada quando se deseja prever a classe de um exemplo, enquanto a regressão é usada quando o objetivo é prever um valor contínuo.
 
 Nas tarefas de classificação, os passos do algoritmo são:
