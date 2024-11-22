@@ -1,0 +1,58 @@
+<diagram program="umletino" version="15.1"><zoom_level>12</zoom_level><element><id>UMLClass</id><coordinates><x>144</x><y>12</y><w>156</w><h>108</h></coordinates><panel_attributes>&lt;&lt;enum&gt;&gt;
+Tamanho
+--
++ P = 0
++ M = 1
++ G = 2</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>372</x><y>12</y><w>192</w><h>96</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+Prato
+--
+--
+/+ getDescricao(): String/
+/+ getPreco(): float/
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>204</x><y>168</y><w>180</w><h>156</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+PratoBase
+--
+_- precoBase: float[]_
+- descricao: String
+- preco: float
+--
++ getDescricao(): String
++ getPreco(): float
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>264</x><y>96</y><w>216</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>160;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>156</x><y>108</y><w>72</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes><additional_attributes>40;80;10;80;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>468</x><y>168</y><w>180</w><h>108</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+Acrescimo
+--
+- prato: Prato
+--
++ getDescricao(): String
++ getPreco(): float
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>96</y><w>108</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;70;60</additional_attributes></element><element><id>Relation</id><coordinates><x>504</x><y>264</y><w>36</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>432</x><y>336</y><w>180</w><h>72</h></coordinates><panel_attributes>Acrescimo...
+--
+--
++ getDescricao(): String
++ getPreco(): float
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>72</x><y>372</y><w>180</w><h>72</h></coordinates><panel_attributes>Boi
+--
+--
++ getDescricao(): String
++ getPreco(): float
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>312</y><w>120</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;50</additional_attributes></element><element><id>UMLClass</id><coordinates><x>168</x><y>456</y><w>180</w><h>72</h></coordinates><panel_attributes>Porco
+--
+--
++ getDescricao(): String
++ getPreco(): float
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>252</x><y>312</y><w>60</w><h>168</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>30;10;10;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>288</x><y>540</y><w>180</w><h>72</h></coordinates><panel_attributes>Vegano
+--
+--
++ getDescricao(): String
++ getPreco(): float
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>312</y><w>84</w><h>252</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;190</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>180</y><w>120</w><h>84</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+Bebida
+--
+- preco: float
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>108</x><y>228</y><w>120</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=0..1</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element></diagram>
