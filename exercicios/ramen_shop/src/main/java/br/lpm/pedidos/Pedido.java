@@ -1,6 +1,6 @@
 package br.lpm.pedidos;
 
-import br.lpm.menu.Prato;
+import br.lpm.menu.prato.Prato;
 
 public class Pedido {
     private static int counter = 0;

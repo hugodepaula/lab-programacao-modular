@@ -1,4 +1,6 @@
-package br.lpm.menu;
+package br.lpm.menu.acrescimos;
+
+import br.lpm.menu.prato.Prato;
 
 public class Shitake extends Acrescimo {
     public Shitake(Prato prato) {

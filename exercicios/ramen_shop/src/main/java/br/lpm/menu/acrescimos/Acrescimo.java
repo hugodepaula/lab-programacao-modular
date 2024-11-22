@@ -1,4 +1,6 @@
-package br.lpm.menu;
+package br.lpm.menu.acrescimos;
+
+import br.lpm.menu.prato.Prato;
 
 public abstract class Acrescimo implements Prato {
     protected Prato prato;
