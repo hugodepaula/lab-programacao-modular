@@ -1,7 +1,5 @@
 package br.lpm.menu.prato;
 
-import java.util.Optional;
-
 import br.lpm.menu.acompanhamentos.Bebida;
 
 public abstract class PratoBase implements Prato {
