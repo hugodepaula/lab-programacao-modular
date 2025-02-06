@@ -47,16 +47,18 @@ Maven é uma ferramenta de automação de build e gerenciamento de projetos base
 
 ### Instalação e Configuração do Maven
 
-**Instalação do Maven:**
+#### **Instalação do Maven:**
+
 1. **Baixar o Maven:** Acesse o site oficial do Maven ([https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)) e baixe a versão mais recente e extraia o conteúdo em uma pasta cujo caminho não contenha espaços.
 
 2. **Configurar Variáveis de Ambiente:**
    - **Windows:**
      - Adicione o diretório `bin` do Maven à variável de ambiente `PATH`.
-     - Exemplo: `C:\apache-maven-4.9.9\bin`
+     - Exemplo: `C:\apache-maven\bin`
    - **Linux/Mac:**
      - Adicione o diretório `bin` ao `PATH` no arquivo `.bashrc` ou `.zshrc`.
-     - Exemplo: `export PATH=$PATH:/opt/apache-maven-4.9.9/bin`
+     - Exemplo: `export PATH=$PATH:/opt/apache-maven/bin`
+
 3. **Verificar Instalação:**
    - Abra o terminal e execute o comando:
      ```bash
@@ -64,30 +66,52 @@ Maven é uma ferramenta de automação de build e gerenciamento de projetos base
      ```
    - Isso deve exibir a versão do Maven instalada.
 
+4. **Instalação das extensões do VS Code**
+   - Instale o Extension Pack for Java da Microsoft. Ele irá instalar 9 extensões para desenvolvimento Java, incluindo o suporte ao Maven.
+
+![VS Code extension Pack](./imgs/vsc-extension-pack.png)
+
 ---
 
 ### Criando um Projeto Java com Maven no Visual Studio Code
 
-**Passo 1: Criar um Projeto Maven**
-1. Abra o Visual Studio Code.
-2. Abra o terminal integrado (`Ctrl + ``).
-3. Navegue até o diretório onde deseja criar o projeto.
-4. Execute o seguinte comando para criar um projeto Maven:
-   ```bash
-   mvn archetype:generate -DgroupId=com.exemplo -DartifactId=meu-projeto -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-   ```
-   - `groupId`: Identificador do grupo (ex: `com.exemplo`).
-   - `artifactId`: Nome do projeto (ex: `meu-projeto`).
+#### **A partir do command palette**
 
-**Passo 2: Abrir o Projeto no VS Code**
-1. No VS Code, abra a pasta do projeto criado (`meu-projeto`).
-2. O VS Code deve reconhecer automaticamente o projeto Maven.
+1. Abra o command palette (`Ctrl + Shft + P`).
+
+2. Selecione: `Java: Create Java Project`
+
+![VS Code Java Project](./imgs/vsc-command-palette-java.png)
+
+3. Selecione o **Maven** como *build tool*.
+
+![VS Code Maven](./imgs/vsc-maven.png)
+
+4. Selecione a opção `No Archetype`.
+
+![Maven No Archetype](./imgs/vsc-no-archetype.png)
+
 
 ---
 
-### 5. Entendendo o Arquivo `pom.xml`
+#### **A partir do terminal**
 
-**Estrutura Básica do `pom.xml`:**
+
+1. Abra o terminal integrado (`Ctrl + ``).
+
+2. Execute o seguinte comando para criar um projeto Maven:
+   ```bash
+   mvn archetype:generate -DgroupId=com.exemplo -DartifactId=meu-projeto -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+   ```
+   - `groupId`: Identificador do grupo (ex: `br.lpm`).
+   - `artifactId`: Nome do projeto (ex: `meu-projeto`).
+
+---
+
+### Entendendo o Arquivo `pom.xml`
+
+#### **Estrutura Básica do `pom.xml`:**
+
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -106,54 +130,54 @@ Maven é uma ferramenta de automação de build e gerenciamento de projetos base
 </project>
 ```
 
-**Atualizando a Versão do Java:**
-- No arquivo `pom.xml`, localize a seção `<properties>` e defina as versões do compilador:
+#### Atualizando a Versão do Java:
+
+No arquivo `pom.xml`, localize a seção `<properties>` e defina as versões do compilador:
   ```xml
   <properties>
-      <maven.compiler.source>17</maven.compiler.source>
-      <maven.compiler.target>17</maven.compiler.target>
+      <maven.compiler.source>23</maven.compiler.source>
+      <maven.compiler.target>23</maven.compiler.target>
+      <maven.compiler.release>23</maven.compiler.release>
   </properties>
   ```
 
----
+#### Adicionando Dependências (JUnit 5)
 
-### 6. Adicionando Dependências (JUnit 5)
-
-**Passo 1: Adicionar JUnit 5 ao `pom.xml`**
-- Adicione a seguinte dependência na seção `<dependencies>`:
+Adicione as dependências da JUnit 5 ao `pom.xml`, na seção `<dependencies>`:
   ```xml
   <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.8.1</version>
+      <version>5.12.0-M1</version>
       <scope>test</scope>
   </dependency>
   <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.8.1</version>
+      <version>5.12.0-M1</version>
       <scope>test</scope>
   </dependency>
   ```
 
-**Passo 2: Atualizar o Projeto**
-- No terminal, execute:
+No terminal, execute:
   ```bash
   mvn clean install
   ```
 
 ---
 
-### 7. Desenvolvendo Algoritmos em Java
+### Desenvolvendo Algoritmos em Java
 
 **Atividade Prática:**
-1. Crie uma classe `Calculadora` no diretório `src/main/java/com/exemplo`.
+1. Crie uma classe `Calculadora` no diretório `src/main/java/br/lpm`.
+
 2. Implemente os seguintes métodos:
    - `int somar(int a, int b)`
    - `int subtrair(int a, int b)`
    - `int multiplicar(int a, int b)`
    - `double dividir(int a, int b)`
-3. Crie testes unitários para cada método na classe `CalculadoraTest` no diretório `src/test/java/com/exemplo`.
+
+3. Crie testes unitários para cada método na classe `CalculadoraTest` no diretório `src/test/java/br/lpm`.
 4. Execute os testes com o comando:
    ```bash
    mvn test
@@ -161,8 +185,8 @@ Maven é uma ferramenta de automação de build e gerenciamento de projetos base
 
 **Exemplo de Código:**
 ```java
-// src/main/java/com/exemplo/Calculadora.java
-package com.exemplo;
+// src/main/java/br/lpm/Calculadora.java
+package br.lpm;
 
 public class Calculadora {
     public int somar(int a, int b) {
@@ -187,8 +211,8 @@ public class Calculadora {
 ```
 
 ```java
-// src/test/java/com/exemplo/CalculadoraTest.java
-package com.exemplo;
+// src/test/java/br/lpm/CalculadoraTest.java
+package br.lpm;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -228,16 +252,3 @@ public class CalculadoraTest {
     }
 }
 ```
-
----
-
-### 8. Conclusão
-
-Neste laboratório, você aprendeu a configurar um projeto Java usando Maven no Visual Studio Code, entender a estrutura do `pom.xml`, adicionar dependências como o JUnit 5, e desenvolver e testar algoritmos básicos em Java. Continue explorando as funcionalidades do Maven para gerenciar projetos mais complexos e eficientes.
-
----
-
-**Próximos Passos:**
-- Explore outros archetypes do Maven para diferentes tipos de projetos.
-- Aprenda a usar plugins do Maven para empacotamento e implantação.
-- Integre o Maven com ferramentas de CI/CD como Jenkins ou GitHub Actions.
